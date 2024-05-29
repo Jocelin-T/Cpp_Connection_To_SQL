@@ -26,8 +26,11 @@
 #include "ErrorHandling.h"
 
 // Forward declaration
-class Entry;
-class Employee;
+namespace bll {
+	class Entry;
+	class Employee;
+}
+
 
 class SqlQuery {
 public:
@@ -69,17 +72,17 @@ public:
 	/** ***************************************** Connect as an employee *****************************************
 	 * @brief : Check if the user exist in the table [Employees].
 	 *
-	 * @param employee : Employee& => (Required to set his employee_email and employee_password)
+	 * @param employee : bll::Employee& => (Required to set his employee_email and employee_password)
 	 * @return  : Boolean => True if the input exist and matches || False in any other cases
 	 */
-	bool checkEmployee(Employee& employee);
+	bool checkEmployee(bll::Employee& employee);
 
 	/** ***************************************** Complet data of an employee *****************************************
 	 * @brief : Complet the data of the given employee with the DB.
 	 *
-	 * @param employee : Employee&, emp_email and emp_password are required
+	 * @param employee : bll::Employee&, emp_email and emp_password are required
 	 */
-	void completEmployeeWithEmailAndPw(Employee& employee);
+	void completEmployeeWithEmailAndPw(bll::Employee& employee);
 
 	/** ***************************************** Extract info of an employee *****************************************
 	 * @brief : Extract the info of the current connected employee from the DB.
@@ -87,7 +90,7 @@ public:
 	 * @param employeeId : Employee, with is emp_id
 	 * @return  : Employee, with is emp_id, emp_last_name, emp_first_name, emp_email
 	 */
-	void getEmployeeWithId(Employee& employee);
+	void getEmployeeWithId(bll::Employee& employee);
 
 
 	// [Entries] Table
@@ -98,7 +101,7 @@ public:
 	 * @param employee_details : A reference of a object Employee (Required to set is ID, last name, first name, employee_email, employee_password)
 	 * @param entry : A reference of a object Entry (Required to set is date, entry hour, exit hour)
 	 */
-	void insertNewEntry(const Entry& entry);
+	void insertNewEntry(const bll::Entry& entry);
 
 	/** ***************************************** Extract info of an entry *****************************************
 	* @brief : Extract the info of the entry with the selected Employee and date from the DB.
@@ -107,7 +110,7 @@ public:
 	* @param entry : std::string, the date of the entry (Format: YYYY-MM-DD)
 	* @return  : Entry, with the id_entry, entry_date, entry_start, entry_end, employee_ID
 	*/
-	void getEntryWithEmployeeIdAndDate(Entry& entry);
+	void getEntryWithEmployeeIdAndDate(bll::Entry& entry);
 
 
 	// DB Management
@@ -138,7 +141,7 @@ public:
 	 * @param employee_admin : A reference of a object Employee (Required to set is employee_email and employee_password)
 	 * @return  : Boolean, True if the employee_email and employee_password match with the ID "1" of the table [Employees] | False in the other cases
 	 */
-	bool connectAdmin(Employee& employee_admin);
+	bool connectAdmin(bll::Employee& employee_admin);
 
 	/** ***************************************** Create a new employee *****************************************
 	* @brief : Create an entry in the [employees] table need to be call
@@ -146,10 +149,10 @@ public:
 	*
 	* @param employee : An object employee (need to set is last name, first name, employee_email, employee_password)
 	*/
-	void insertNewEmployee(Employee& employee);
+	void insertNewEmployee(bll::Employee& employee);
 
 	// ***************************************** Update an employee *****************************************
-	void updateEmployee(Employee& employee);
+	void updateEmployee(bll::Employee& employee);
 
 	// ***************************************** Delete an employee *****************************************
 	void deleteEmployee();
@@ -159,14 +162,6 @@ public:
 	 *
 	 * @param vector_employees : std::vector<Employee>& => a vector
 	 */
-	void getAllEmployees(std::vector<Employee>& vector_employees);
-
-
-
-
-
-
-
-
+	void getAllEmployees(std::vector<bll::Employee>& vector_employees);
 };
 

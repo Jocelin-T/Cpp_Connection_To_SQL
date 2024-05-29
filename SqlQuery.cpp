@@ -9,6 +9,7 @@
 #include "Entry.h"
 #include "Employee.h"
 
+
 // Default Constructor
 SqlQuery::SqlQuery()
 	:m_pDriver(nullptr), m_pSql_connection(nullptr), m_pStatement(nullptr), m_pPrep_statement(nullptr)
@@ -18,10 +19,10 @@ SqlQuery::SqlQuery()
 /** ***************************************** Connect as an employee *****************************************
  * @brief : Check if the user exist in the table [Employees].
  * 
- * @param employee : Employee& => (Required to set his employee_email and employee_password)
+ * @param employee : bll::Employee& => (Required to set his employee_email and employee_password)
  * @return  : Boolean => True if the input exist and matches || False in any other cases
  */
-bool SqlQuery::checkEmployee(Employee& employee) {
+bool SqlQuery::checkEmployee(bll::Employee& employee) {
 	try {
 		// Ensure the SQL connection is open
 		checkSQLConnection();
@@ -64,9 +65,9 @@ bool SqlQuery::checkEmployee(Employee& employee) {
 /** ***************************************** Complet data of an employee *****************************************
  * @brief : Complet the data of the given employee with the DB.
  * 
- * @param employee : Employee&, emp_email and emp_password are required
+ * @param employee : bll::Employee&, emp_email and emp_password are required
  */
-void SqlQuery::completEmployeeWithEmailAndPw(Employee& employee){
+void SqlQuery::completEmployeeWithEmailAndPw(bll::Employee& employee){
 	try {
 		// Ensure the SQL connection is open
 		checkSQLConnection();
@@ -115,7 +116,7 @@ void SqlQuery::completEmployeeWithEmailAndPw(Employee& employee){
  * @param employeeId : Employee, with is emp_id
  * @return  : Employee, with is emp_id, emp_last_name, emp_first_name, emp_email
  */
-void SqlQuery::getEmployeeWithId(Employee& employee) {
+void SqlQuery::getEmployeeWithId(bll::Employee& employee) {
 	try {
 		// Ensure the SQL connection is open
 		checkSQLConnection();
@@ -160,12 +161,12 @@ void SqlQuery::getEmployeeWithId(Employee& employee) {
 
 /** ####################################### Entries ##################################### */
 /** ***************************************** Insert datas in [Entries] Table *****************************************
- * @brief : Insert a new entry in the [Entries "table,
- *	need to be call after SqlQuery::connectToDB().
+ * @brief : Insert a new entry in the [Entries] table,
  *
  * @param entry : A reference of a object Entry (Required to set is date, entry hour, exit hour, employee ID)
  */
-void SqlQuery::insertNewEntry(const Entry& entry) {
+void SqlQuery::insertNewEntry(const bll::Entry& entry) {
+
 	creation_success = false;
 	try {
 		// Ensure the SQL connection is open
@@ -206,9 +207,9 @@ void SqlQuery::insertNewEntry(const Entry& entry) {
 /** ***************************************** Extract data of an entry *****************************************
  * @brief : Complete the object Entry with the data in the DB.
  * 
- * @param entry : Entry&, with the employee_ID, entry_date
+ * @param entry : bll::Entry&, with the employee_ID, entry_date
  */
-void SqlQuery::getEntryWithEmployeeIdAndDate(Entry& entry){
+void SqlQuery::getEntryWithEmployeeIdAndDate(bll::Entry& entry){
 	try {
 		// Ensure the SQL connection is open
 		checkSQLConnection();
@@ -381,7 +382,7 @@ void SqlQuery::createAllTables() {
  * @return  : Boolean, True if the employee_email and employee_password match with the ID "1" of the table [Employees] |
  *					 False in the other cases
  */
-bool SqlQuery::connectAdmin(Employee& employee_admin){
+bool SqlQuery::connectAdmin(bll::Employee& employee_admin){
 	try {
 		// Ensure the SQL connection is open
 		checkSQLConnection();
@@ -425,7 +426,7 @@ bool SqlQuery::connectAdmin(Employee& employee_admin){
  *
  * @param employee : A reference of a object Employee (Required to set is last name, first name, employee_email, employee_password)
  */
-void SqlQuery::insertNewEmployee(Employee& employee) {
+void SqlQuery::insertNewEmployee(bll::Employee& employee) {
 	creation_success = false;
 	try {
 		// Ensure the SQL connection is open
@@ -463,7 +464,7 @@ void SqlQuery::insertNewEmployee(Employee& employee) {
 }
 
 // ***************************************** Update a employee *****************************************
-void SqlQuery::updateEmployee(Employee& employee) {
+void SqlQuery::updateEmployee(bll::Employee& employee) {
 
 }
 
@@ -477,7 +478,7 @@ void SqlQuery::deleteEmployee() {
  * 
  * @param vector_employees : std::vector<Employee>& => a vector
  */
-void SqlQuery::getAllEmployees(std::vector<Employee>& vector_employees){
+void SqlQuery::getAllEmployees(std::vector<bll::Employee>& vector_employees){
 	try {
 		// Ensure the SQL connection is open
 		checkSQLConnection();
@@ -494,7 +495,7 @@ void SqlQuery::getAllEmployees(std::vector<Employee>& vector_employees){
 
 		// Loop through the result and create a object Employee each time
 		while (result->next()) {
-			Employee employee;
+			bll::Employee employee;
 			employee.setEmployeeId(result->getInt("id_emp"));
 			employee.setLastName(result->getString("emp_last_name"));
 			employee.setFirstName(result->getString("emp_first_name"));

@@ -42,7 +42,7 @@ namespace gui {
          *
          * @param employee_details : Employee, with the full details (employee_ID, employee_last_name, employee_first_name, employee_email)
          */
-        void toPanel_Employee_Hours(Employee& employee_details);
+        void toPanel_Employee_Hours(bll::Employee& employee_details);
 
         /**  ***************************************** Switch to (PanelConnection) *****************************************
          * @brief : Will change the panel to (PanelConnection).
@@ -77,6 +77,6 @@ namespace gui {
 
     private:
         wxPanel* m_pCurrent_panel;  // Pointer to keep track of the current panel
-        Employee employee_details; // Current logged-in user
+        bll::Employee employee_details; // Current logged-in user
     };
 } // namespace gui

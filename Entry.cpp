@@ -8,6 +8,7 @@
 #include "Entry.h"
 #include "BLLManager.h"
 
+namespace bll {
  // Parameterized Constructor
 Entry::Entry(const int employee_id, const std::string& entry_date,
 	const std::string& entry_start, const std::string& entry_end,
@@ -74,3 +75,4 @@ int Entry::parseTimeToMinutes(const std::string& time) {
 
 	return hours * 60 + minutes;
 }
+} // namespace bll

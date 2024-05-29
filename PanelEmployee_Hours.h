@@ -7,16 +7,12 @@
  *********************************************************************/
 #pragma once
 #include "Panel.h"
-//#include "Employee.h"
-//#include "SqlQuery.h"
-
-//#include "Entry.h" // Remove after refactor
 
 namespace gui {
 	class PanelEmployee_Hours : public Panel{
 	public:
 		// Constructor
-		PanelEmployee_Hours(wxWindow* pParent, wxFrame* pMain_frame, const Employee& employee);
+		PanelEmployee_Hours(wxWindow* pParent, wxFrame* pMain_frame, const bll::Employee& employee);
 
 		// Getter
 		wxString getDate();
@@ -39,7 +35,7 @@ namespace gui {
 		wxButton* m_pButton_confirm;
 
 		// Current employee connected
-		const Employee m_employee;
+		const bll::Employee m_employee;
 
 		// Override the onEnterKeyPressed method
 		void onEnterKeyPressed() override;
