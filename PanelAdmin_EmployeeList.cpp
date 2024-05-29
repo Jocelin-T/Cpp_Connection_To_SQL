@@ -76,6 +76,8 @@ void PanelAdminEmployeeList::InitializeComponents(){
 	// Set the main sizer for the panel to arrange the sub-widgets
 	this->SetSizer(pMain_sizer);
 	this->Layout();
+
+	m_pEmployee_choice->SetFocus();
 }
 /** ####################################### Buttons ##################################### */
 /** ***************************************** Bind Handler *****************************************
@@ -172,7 +174,6 @@ void PanelAdminEmployeeList::PopulateEmployees() {
  * 
  */
 void PanelAdminEmployeeList::UpdatePanelHours(){
-	using bll::Salary; // A voir
 	// Clear existing content in m_pPanel_hours
 	if (m_pPanel_hours) {
 		m_pPanel_hours->DestroyChildren();
@@ -201,7 +202,7 @@ void PanelAdminEmployeeList::UpdatePanelHours(){
 	m_pHours_sizer->Add(pText_employee, 0, wxALL | wxEXPAND, 5);
 
 	// Pointer of a new Salary object
-	Salary* pSalary_details = new Salary(selected_employee_id, selected_date.ToStdString());
+	bll::Salary* pSalary_details = new bll::Salary(selected_employee_id, selected_date.ToStdString());
 
 	// GUI
 	wxStaticText* pSalary_text = new wxStaticText(m_pPanel_hours, wxID_ANY,
