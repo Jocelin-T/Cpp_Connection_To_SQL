@@ -18,6 +18,39 @@ namespace gui{
 		this->Bind(wxEVT_CHAR_HOOK, &Panel::onKeyDown, this);
 	}
 
+	/** ***************************************** Add title to Panel *****************************************
+	 * @brief : Will add the title to the current Panel.
+	 * 
+	 * @param current_panel : wxPanel* => panel where the title is display (probably this)
+	 * @param box_sizer : wxBoxSizer* => box sizer holding the title
+	 * @param title : wxString& => title
+	 */
+	void Panel::addPanelTitle(wxBoxSizer* box_sizer, const wxString& title){
+		wxBoxSizer* pSizer = new wxBoxSizer(wxVERTICAL);
+		wxStaticText* pTitle_page = new wxStaticText(this, wxID_ANY, title);
+		pTitle_page->SetFont(global_title_font);
+		box_sizer->Add(pTitle_page, 0, wxALIGN_CENTER_HORIZONTAL | wxTOP | wxBOTTOM, 40);
+	}
+
+	/** ***************************************** Label and Text Control *****************************************
+	 * @brief : Create a label with is text control under.
+	 * 
+	 * @param box_sizer : wxBoxSizer* => box wizer where this will be display
+	 * @param label : wxString& => label of the text control
+	 * @param default_value :	wxString& => value of the text control, empty by default
+	 * @param style : long => style if the wxTextCtrl, no style by default
+	 * @return  : wxTextCtrl* => a label with is text control
+	 */
+	wxTextCtrl* Panel::pAddLabelAndTextControl(wxBoxSizer* box_sizer, const wxString& label, const wxString& default_value, long style) {
+		wxBoxSizer* pSizer = new wxBoxSizer(wxVERTICAL);
+		wxStaticText* pLabel_text = new wxStaticText(this, wxID_ANY, label);
+		wxTextCtrl* pText_ctrl = new wxTextCtrl(this, wxID_ANY, default_value, wxDefaultPosition, wxDefaultSize, style);
+		pSizer->Add(pLabel_text, 0, wxBOTTOM, 5);  // Add some space below the label
+		pSizer->Add(pText_ctrl, 1, wxEXPAND); // Expand to fill available horizontal space
+		box_sizer->Add(pSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, 40);
+		return pText_ctrl;
+	}
+
 	/** ***************************************** Enter key *****************************************
 	 * @brief : Default implementation does nothing.
 	 *
@@ -51,16 +84,12 @@ namespace gui{
 
 		switch (result) {
 		case wxID_YES:
-			//wxLogStatus("Yes");
 			return true;
 		case wxID_NO:
-			//wxLogStatus("No");
 			return false;
 		case wxID_CANCEL:
-			//wxLogStatus("Cancel");
 			return false;
 		default:
-			//wxLogStatus("Default");
 			return false;
 		}
 	}

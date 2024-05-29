@@ -21,7 +21,6 @@ namespace gui {
 
 	private:
 		// Static Text
-		wxStaticText* m_pTitle_page;
 		wxStaticText* m_pLast_name;
 		wxStaticText* m_pFirst_name;
 

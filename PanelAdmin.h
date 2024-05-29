@@ -14,20 +14,16 @@ namespace gui {
 		// Constructor
 		PanelAdmin(wxWindow* pParent, wxFrame* pMain_frame);
 
-
 	private:
-		// Title of the Panel
-		wxStaticText* m_pTitle_page;
-
-		const wxSize button_size{ wxSize(150, 50) };
+		const wxSize m_button_size{ wxSize(170, 50) };
 
 		// Buttons
-		wxButton* pButton_add_employee;
-		wxButton* pButton_update_employee;
-		wxButton* pButton_list_employee;
+		wxButton* m_pButton_add_employee;
+		wxButton* m_pButton_update_employee;
+		wxButton* m_pButton_list_employee;
 
-		wxButton* pButton_disconnect;
-		wxButton* pButton_placeholder;
+		wxButton* m_pButton_disconnect;
+		wxButton* m_pButton_placeholder;
 
 		/** ####################################### GUI #####################################
 		 * @brief : GUI for the panel admin.

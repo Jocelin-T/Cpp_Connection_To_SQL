@@ -25,9 +25,7 @@ namespace gui {
 		wxBoxSizer* pMain_sizer = new wxBoxSizer(wxVERTICAL);
 
 		// Title of the panel
-		m_pTitle_page = new wxStaticText(this, wxID_ANY, "Hours manager");
-		m_pTitle_page->SetFont(global_title_font);
-		pMain_sizer->Add(m_pTitle_page, 0, wxALIGN_CENTER_HORIZONTAL | wxTOP | wxBOTTOM, 40);
+		addPanelTitle(pMain_sizer, "Hours manager");
 
 		// Display infos of the current employee connected (convert from std::string to wxString)
 		m_pLast_name = new wxStaticText(this, wxID_ANY, wxString(m_employee.getLastName()));
@@ -35,23 +33,10 @@ namespace gui {
 		pMain_sizer->Add(m_pLast_name, 0, wxALIGN_CENTER_HORIZONTAL | wxBOTTOM, 10);
 		pMain_sizer->Add(m_pFirst_name, 0, wxALIGN_CENTER_HORIZONTAL);
 
-		// Helper function to create label and text control pairs
-		auto addLabelAndTextControl = [&](const wxString& label,
-			const wxString& defaultValue = "",
-			long style = 0) -> wxTextCtrl* {
-				wxBoxSizer* pSizer = new wxBoxSizer(wxVERTICAL);
-				wxStaticText* pLabel_text = new wxStaticText(this, wxID_ANY, label);
-				wxTextCtrl* pText_ctrl = new wxTextCtrl(this, wxID_ANY, defaultValue, wxDefaultPosition, wxDefaultSize, style);
-				pSizer->Add(pLabel_text, 0, wxBOTTOM, 5);  // Add some space below the label
-				pSizer->Add(pText_ctrl, 1, wxEXPAND); // Expand to fill available horizontal space
-				pMain_sizer->Add(pSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, 40);
-				return pText_ctrl;
-			};
-
 		// Add label and text control pairs
-		m_pEntry_date = addLabelAndTextControl("Date: (YYYY-MM-DD)", getCurrentDate());
-		m_pEntry_hour = addLabelAndTextControl("Entry hour: (HH:MM)"); // Focus on this one
-		m_pExit_hour = addLabelAndTextControl("Exit hour: (HH:MM)");
+		m_pEntry_date = pAddLabelAndTextControl(pMain_sizer,"Date: (YYYY-MM-DD)", getCurrentDate());
+		m_pEntry_hour = pAddLabelAndTextControl(pMain_sizer,"Entry hour: (HH:MM)"); // Focus on this one
+		m_pExit_hour = pAddLabelAndTextControl(pMain_sizer,"Exit hour : (HH:MM)");
 
 		// Add a flexible spacer to push the buttons to the bottom
 		pMain_sizer->AddStretchSpacer(1); // This adds a stretchable space that expands

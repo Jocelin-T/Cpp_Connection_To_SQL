@@ -29,9 +29,7 @@ void PanelAdminEmployeeList::InitializeComponents(){
 	wxBoxSizer* pMain_sizer = new wxBoxSizer(wxVERTICAL);
 
 	// Title of the panel
-	m_pTitle_page = new wxStaticText(this, wxID_ANY, "List of employees");
-	m_pTitle_page->SetFont(global_title_font);
-	pMain_sizer->Add(m_pTitle_page, 0, wxALIGN_CENTER_HORIZONTAL | wxTOP | wxBOTTOM, 40);
+	addPanelTitle(pMain_sizer, "List of employees");
 
 	// Drop down list
 	m_pEmployee_choice = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxSize(200, -1));

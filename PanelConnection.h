@@ -22,9 +22,6 @@ namespace gui {
 		void onEnterKeyPressed() override;
 
 	private:
-		// Title of this Panel
-		wxStaticText* m_pTitle_page;
-
 		// Text fields
 		wxTextCtrl* m_pEmail;
 		wxTextCtrl* m_pPassword;

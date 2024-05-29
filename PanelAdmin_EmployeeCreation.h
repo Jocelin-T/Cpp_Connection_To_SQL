@@ -21,9 +21,6 @@ namespace gui{
         PanelAdmin_EmployeeCreation(wxWindow* parent, wxFrame* pMain_frame);
 
     private:
-        // Title of the panel
-        wxStaticText* m_pTitle_page;
-
         // Text Fields
         wxTextCtrl* m_pLast_name;
         wxTextCtrl* m_pFirst_name;

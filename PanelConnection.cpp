@@ -23,24 +23,11 @@ namespace gui{
 		wxBoxSizer* pMain_sizer = new wxBoxSizer(wxVERTICAL);
 
 		// Title of the panel
-		m_pTitle_page = new wxStaticText(this, wxID_ANY, "Connect to your session");
-		m_pTitle_page->SetFont(global_title_font);
-		pMain_sizer->Add(m_pTitle_page, 0, wxALIGN_CENTER_HORIZONTAL | wxTOP | wxBOTTOM, 40);
-
-		// Helper function to create label and text control pairs
-		auto addLabelAndTextControl = [&](const wxString& label, long style = 0) -> wxTextCtrl* {
-			wxBoxSizer* pSizer = new wxBoxSizer(wxVERTICAL);
-			wxStaticText* pLabel_text = new wxStaticText(this, wxID_ANY, label);
-			wxTextCtrl* pText_ctrl = new wxTextCtrl(this, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, style);
-			pSizer->Add(pLabel_text, 0, wxBOTTOM, 5);  // Add some space below the label
-			pSizer->Add(pText_ctrl, 1, wxEXPAND); // Expand to fill available horizontal space
-			pMain_sizer->Add(pSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, 40);
-			return pText_ctrl;
-		};
+		addPanelTitle(pMain_sizer, "Connect to your session");
 
 		// Add label and text control pairs
-		m_pEmail = addLabelAndTextControl("Email:");
-		m_pPassword = addLabelAndTextControl("Password:", wxTE_PASSWORD);
+		m_pEmail = pAddLabelAndTextControl(pMain_sizer, "Email:");
+		m_pPassword = pAddLabelAndTextControl(pMain_sizer, "Password:", "", wxTE_PASSWORD);
 
 		// Add a flexible spacer to push the buttons to the bottom
 		pMain_sizer->AddStretchSpacer(1); // This adds a stretchable space that expands

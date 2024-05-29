@@ -22,10 +22,6 @@ namespace gui {
         PanelAdminEmployeeList(wxWindow* pParent, wxFrame* pMain_frame);
 
     private:
-        // ############## GUI ##############
-        // Title of the panel
-        wxStaticText* m_pTitle_page;
-
         // Drop down list (wxChoice)
         wxChoice* m_pEmployee_choice;
 
