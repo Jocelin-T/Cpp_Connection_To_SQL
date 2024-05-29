@@ -7,7 +7,6 @@
  *********************************************************************/
 #pragma once
 #include "SqlQuery.h"
-#include "ErrorHandling.h"
 
 // Forward declaration
 class Entry;

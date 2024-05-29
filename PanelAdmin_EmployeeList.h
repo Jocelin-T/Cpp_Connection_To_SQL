@@ -9,10 +9,11 @@
 #pragma once
 
 #include "Panel.h"
-//#include "BLLManager.h"
 
 // Forward declaration
-class Salary;
+namespace bll {
+    class Salary;
+}
 
 namespace gui {
     class PanelAdminEmployeeList : public Panel {
