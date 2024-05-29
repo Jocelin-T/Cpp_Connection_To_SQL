@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fichiers sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Fichiers de ressources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\BLL">
+      <UniqueIdentifier>{3ddd7eaf-5bfa-430d-b984-d3cc604cc139}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\BLL">
+      <UniqueIdentifier>{d0813904-9676-4a1e-bad2-50e5cc52e5e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\DAL">
+      <UniqueIdentifier>{b15ac6d9-2153-4e73-9fb0-6a8372be3919}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GUI">
+      <UniqueIdentifier>{827b055a-6ab7-4a1b-97bc-d0d0b78ad827}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\DAL">
+      <UniqueIdentifier>{5a9ef4a6-1d3f-4cdd-927b-e7ec9ef7e540}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GUI">
+      <UniqueIdentifier>{0745682c-6568-4711-add9-04f2e91ae7df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GUI\Employee">
+      <UniqueIdentifier>{f0f60ba7-1b3e-47c6-a685-162b1589571e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GUI\Admin">
+      <UniqueIdentifier>{6aac74c3-43d0-496c-9c2b-8706521ad502}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GUI\Employee">
+      <UniqueIdentifier>{4f6c55b2-2740-4170-a70a-22c02466b3e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GUI\Admin">
+      <UniqueIdentifier>{cc2f1946-1ad4-4a7e-a4db-9afc9ec9423d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="App.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="AppGlobals.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ErrorHandling.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="BLLManager.cpp">
+      <Filter>Fichiers sources\BLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Employee.cpp">
+      <Filter>Fichiers sources\BLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Entry.cpp">
+      <Filter>Fichiers sources\BLL</Filter>
+    </ClCompile>
+    <ClCompile Include="SqlQuery.cpp">
+      <Filter>Fichiers sources\DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Salary.cpp">
+      <Filter>Fichiers sources\BLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Panel.cpp">
+      <Filter>Fichiers sources\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="PanelConnection.cpp">
+      <Filter>Fichiers sources\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrame.cpp">
+      <Filter>Fichiers sources\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="PanelAdmin.cpp">
+      <Filter>Fichiers sources\GUI\Admin</Filter>
+    </ClCompile>
+    <ClCompile Include="PanelAdmin_EmployeeCreation.cpp">
+      <Filter>Fichiers sources\GUI\Admin</Filter>
+    </ClCompile>
+    <ClCompile Include="PanelAdmin_EmployeeList.cpp">
+      <Filter>Fichiers sources\GUI\Admin</Filter>
+    </ClCompile>
+    <ClCompile Include="PanelAdmin_EmployeeUpdate.cpp">
+      <Filter>Fichiers sources\GUI\Admin</Filter>
+    </ClCompile>
+    <ClCompile Include="PanelEmployee_Hours.cpp">
+      <Filter>Fichiers sources\GUI\Employee</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="App.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="AppGlobals.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorHandling.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="BLLManager.h">
+      <Filter>Fichiers d%27en-tête\BLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Employee.h">
+      <Filter>Fichiers d%27en-tête\BLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Entry.h">
+      <Filter>Fichiers d%27en-tête\BLL</Filter>
+    </ClInclude>
+    <ClInclude Include="SqlQuery.h">
+      <Filter>Fichiers d%27en-tête\DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Salary.h">
+      <Filter>Fichiers d%27en-tête\BLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Panel.h">
+      <Filter>Fichiers d%27en-tête\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="PanelConnection.h">
+      <Filter>Fichiers d%27en-tête\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrame.h">
+      <Filter>Fichiers d%27en-tête\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="PanelAdmin_EmployeeUpdate.h">
+      <Filter>Fichiers d%27en-tête\GUI\Admin</Filter>
+    </ClInclude>
+    <ClInclude Include="PanelAdmin.h">
+      <Filter>Fichiers d%27en-tête\GUI\Admin</Filter>
+    </ClInclude>
+    <ClInclude Include="PanelAdmin_EmployeeCreation.h">
+      <Filter>Fichiers d%27en-tête\GUI\Admin</Filter>
+    </ClInclude>
+    <ClInclude Include="PanelAdmin_EmployeeList.h">
+      <Filter>Fichiers d%27en-tête\GUI\Admin</Filter>
+    </ClInclude>
+    <ClInclude Include="PanelEmployee_Hours.h">
+      <Filter>Fichiers d%27en-tête\GUI\Employee</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
