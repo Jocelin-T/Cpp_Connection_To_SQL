@@ -32,7 +32,7 @@ namespace gui {
 	 * 
 	 * @param employee_details : Employee, with the full details (employee_ID, employee_last_name, employee_first_name, employee_email)
 	 */
-	void MainFrame::toPanel_Employee_Hours(Employee& employee_details) {
+	void MainFrame::toPanel_Employee_Hours(bll::Employee& employee_details) {
 		SwitchPanel(new PanelEmployee_Hours(this, this, employee_details));
 	}
 

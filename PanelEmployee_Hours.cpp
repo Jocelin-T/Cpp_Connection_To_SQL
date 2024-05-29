@@ -9,7 +9,7 @@
 
 
 namespace gui {
-	PanelEmployee_Hours::PanelEmployee_Hours(wxWindow* pParent, wxFrame* pMain_frame, const Employee& employee)
+	PanelEmployee_Hours::PanelEmployee_Hours(wxWindow* pParent, wxFrame* pMain_frame, const bll::Employee& employee)
 		: Panel{ pParent, pMain_frame }, m_employee{ employee }
 	{
 		initializeComponents();

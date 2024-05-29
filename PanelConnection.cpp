@@ -68,12 +68,9 @@ namespace gui{
 	void PanelConnection::bindEventHandlers() {
 		m_pButton_exit->Bind(wxEVT_BUTTON, &PanelConnection::onExitButtonClicked, this);
 		m_pButton_connect->Bind(wxEVT_BUTTON, &PanelConnection::onConnectButtonClicked, this);
-
-		//// Bind key events to all fields
-		//m_pEmail->Bind(wxEVT_KEY_DOWN, &Panel::onKeyDown, dynamic_cast<Panel*>(this));
-		//m_pPassword->Bind(wxEVT_KEY_DOWN, &Panel::onKeyDown, dynamic_cast<Panel*>(this));
 	}
-
+	/** ***************************************** Enter key *****************************************
+	 */
 	void PanelConnection::onEnterKeyPressed() {
 		connectUser();
 	}
@@ -130,7 +127,7 @@ namespace gui{
 		else if (bll::checkEmployeeConnection(email.ToStdString(), password.ToStdString())) { // if it's an Employee
 			MainFrame* mainFrame = dynamic_cast<MainFrame*>(pMain_frame); // Safe casting
 			if (mainFrame) { // Connect him in the (PanelEmployee_Hours)
-				Employee employee_details = bll::getEmployeeWithEmailAndPw(email.ToStdString(), password.ToStdString());
+				bll::Employee employee_details = bll::getEmployeeWithEmailAndPw(email.ToStdString(), password.ToStdString());
 				mainFrame->toPanel_Employee_Hours(employee_details);
 			}
 		}

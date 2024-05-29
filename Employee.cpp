@@ -9,7 +9,7 @@
 #include "BLLManager.h"
 
 
-
+namespace bll {
 // Parameterized Constructor
 Employee::Employee(const int employee_id, const std::string emp_last_name,
 	const std::string emp_first_name, const std::string emp_email, const std::string emp_password)
@@ -35,4 +35,5 @@ Employee::Employee(const std::string email, const std::string password)
 	// Complet the Employee object with the data found in the DB
 	bll::completEmployeeWithEmailAndPw(*this);
 }
+} // namespace bll
 

@@ -8,12 +8,11 @@
 #pragma once
 
 #include <string>
-//#include "wx/wx.h"
-//#include "SqlQuery.h"
+
 #include "Employee.h"
 #include "Entry.h"
 
-namespace salary {
+namespace bll {
 	class Salary{
 	public:
 		// Constructors
@@ -93,4 +92,4 @@ namespace salary {
 
 	};
 
-} // namespace salary
+} // namespace bll

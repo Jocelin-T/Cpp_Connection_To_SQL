@@ -147,10 +147,10 @@ bool PanelAdminEmployeeList::isValidDate(const std::string& date) {
  */
 void PanelAdminEmployeeList::PopulateEmployees() {
 	// Creation and population of a vector of Employee
-	std::vector<Employee> list_employees = bll::getVectorWithEmployees();
+	std::vector<bll::Employee> list_employees = bll::getVectorWithEmployees();
 
 	// Display all employees in a wxChoices
-	for (Employee& employee : list_employees) {
+	for (bll::Employee& employee : list_employees) {
 		if (employee.getFirstName() != "Admin" && employee.getEmployeeId() != 1) { // Ignore the Employee Admin
 			wxString item_label = wxString::Format(wxT("%d - %s %s"),
 				employee.getEmployeeId(),
@@ -172,7 +172,7 @@ void PanelAdminEmployeeList::PopulateEmployees() {
  * 
  */
 void PanelAdminEmployeeList::UpdatePanelHours(){
-	using salary::Salary; // A voir
+	using bll::Salary; // A voir
 	// Clear existing content in m_pPanel_hours
 	if (m_pPanel_hours) {
 		m_pPanel_hours->DestroyChildren();
