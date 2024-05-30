@@ -6,11 +6,13 @@
  * @date   7 May 2024
  *********************************************************************/
 #pragma once
-
+#include <vector>
 #include <string>
 
 #include "Employee.h"
 #include "Entry.h"
+
+
 
 namespace bll {
 	class Salary{
@@ -21,6 +23,12 @@ namespace bll {
 		Salary(const int employee_id,
 			const std::string& entry_date, 
 			const int salary_per_hour = 38); // Default salary per hour
+
+		std::vector<Salary> getSalaries(
+			const int employee_id,
+			const std::string& entry_date,
+			const int period,
+			const int salary_per_hour = 38);
 
 		// Destructor
 		~Salary();
@@ -33,7 +41,6 @@ namespace bll {
 		// Objects Ptr
 		const Entry* m_pEntry_details;
 		const Employee* m_pEmployee_details;
-
 
 		/** ***************************************** Creation of a new daily salary *****************************************
 		 * @brief : Create a salary for the given employee id and date with

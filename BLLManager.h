@@ -6,6 +6,11 @@
  * @date   21 May 2024
  *********************************************************************/
 #pragma once
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <cctype>
+
 #include "SqlQuery.h"
 
 // Forward declaration
@@ -43,7 +48,7 @@ namespace bll {
 	 * @param entry_end : std::string& => end hour of the entry in format HH:MM
 	 * @return : boolean => true if the creation is a succes
 	 */
-	bool createNewEntry(const int employee_id, const std::string& date, const std::string& start_hour, const std::string& end_hour);
+	bool createNewEntry(const int employee_id, const std::string& entry_date, const std::string& entry_start, const std::string& entry_end);
 
 	/** ***************************************** TO DO *****************************************
 	 * @brief : Create a new employee inside the DB with the given parameters, all are required.
@@ -89,5 +94,21 @@ namespace bll {
 	 * @return  : Employee => with email, last name, first name, employee ID
 	 */
 	Employee getEmployeeWithEmailAndPw(const std::string& email, const std::string& password);
+
+	/** ***************************************** First Name Format *****************************************
+	 * @brief : Transform the std::string received in this format: (Examplename) or (Example-Name).
+	 *
+	 * @param first_name : std::string& => first name
+	 * @return  : std::string
+	 */
+	std::string formatFirstName(const std::string& first_name);
+
+	/** ***************************************** Last Name Format *****************************************
+	 * @brief : Transform the std::string received in this format: (EXAMPLENAME) or (EXAMPLE-NAME) or (EXEMPLE NAME).
+	 *
+	 * @param last_name : std::string& => last name
+	 * @return  : std::string
+	 */
+	std::string formatLastName(const std::string& last_name);
 
 } // namespace BLL

@@ -13,7 +13,6 @@ namespace gui {
 		: Panel{ pParent, pMain_frame }, m_employee{ employee }
 	{
 		initializeComponents();
-		bindEventHandlers();
 	}
 
 	/** ####################################### GUI #####################################
@@ -25,9 +24,7 @@ namespace gui {
 		wxBoxSizer* pMain_sizer = new wxBoxSizer(wxVERTICAL);
 
 		// Title of the panel
-		m_pTitle_page = new wxStaticText(this, wxID_ANY, "Hours manager");
-		m_pTitle_page->SetFont(global_title_font);
-		pMain_sizer->Add(m_pTitle_page, 0, wxALIGN_CENTER_HORIZONTAL | wxTOP | wxBOTTOM, 40);
+		addPanelTitle(pMain_sizer, "Hours manager");
 
 		// Display infos of the current employee connected (convert from std::string to wxString)
 		m_pLast_name = new wxStaticText(this, wxID_ANY, wxString(m_employee.getLastName()));
@@ -35,36 +32,23 @@ namespace gui {
 		pMain_sizer->Add(m_pLast_name, 0, wxALIGN_CENTER_HORIZONTAL | wxBOTTOM, 10);
 		pMain_sizer->Add(m_pFirst_name, 0, wxALIGN_CENTER_HORIZONTAL);
 
-		// Helper function to create label and text control pairs
-		auto addLabelAndTextControl = [&](const wxString& label,
-			const wxString& defaultValue = "",
-			long style = 0) -> wxTextCtrl* {
-				wxBoxSizer* pSizer = new wxBoxSizer(wxVERTICAL);
-				wxStaticText* pLabel_text = new wxStaticText(this, wxID_ANY, label);
-				wxTextCtrl* pText_ctrl = new wxTextCtrl(this, wxID_ANY, defaultValue, wxDefaultPosition, wxDefaultSize, style);
-				pSizer->Add(pLabel_text, 0, wxBOTTOM, 5);  // Add some space below the label
-				pSizer->Add(pText_ctrl, 1, wxEXPAND); // Expand to fill available horizontal space
-				pMain_sizer->Add(pSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, 40);
-				return pText_ctrl;
-			};
-
 		// Add label and text control pairs
-		m_pEntry_date = addLabelAndTextControl("Date: (YYYY-MM-DD)", getCurrentDate());
-		m_pEntry_hour = addLabelAndTextControl("Entry hour: (HH:MM)"); // Focus on this one
-		m_pExit_hour = addLabelAndTextControl("Exit hour: (HH:MM)");
+		m_pEntry_date = pAddLabelAndTextControl(pMain_sizer,"Date: (YYYY-MM-DD)", getCurrentDate());
+		m_pEntry_hour = pAddLabelAndTextControl(pMain_sizer,"Entry hour: (HH:MM)"); // Focus on this one
+		m_pExit_hour = pAddLabelAndTextControl(pMain_sizer,"Exit hour : (HH:MM)");
 
 		// Add a flexible spacer to push the buttons to the bottom
 		pMain_sizer->AddStretchSpacer(1); // This adds a stretchable space that expands
 
-		// Buttons at the bottom
-		wxBoxSizer* pButton_sizer = new wxBoxSizer(wxHORIZONTAL);
-		m_pButton_disconnect = new wxButton(this, wxID_ANY, "Disconnect");
-		m_pButton_confirm = new wxButton(this, wxID_ANY, "Confirm Entry");
-		pButton_sizer->Add(m_pButton_disconnect, 0, wxRIGHT, 250);
-		pButton_sizer->Add(m_pButton_confirm, 0, wxLEFT, 250);
+		// Add footer button
+		vector_buttons_footer = { m_pButton_disconnect, m_pButton_confirm };
+		vector_labels_footer = { "Disconnect", "Confirm Entry" };
+		vector_method_footer = {
+			wxCommandEventHandler(PanelEmployee_Hours::onDisconnectButtonClicked),
+			wxCommandEventHandler(PanelEmployee_Hours::onConfirmButtonClicked)
+		};
 
-		// Add buttons without top space pushing down
-		pMain_sizer->Add(pButton_sizer, 0, wxALIGN_CENTER | wxALL, 10);
+		addFooterButtons(pMain_sizer, vector_buttons_footer, vector_labels_footer, vector_method_footer);
 
 		// Set the main sizer for the panel to arrange the sub-widgets
 		this->SetSizer(pMain_sizer);
@@ -74,41 +58,20 @@ namespace gui {
 	}
 
 	/** ####################################### Buttons ##################################### */
-	/** ***************************************** Bind Handler *****************************************
-	 * @brief : Handle all the buttons bind of this panel.
-	 *
+	/** ***************************************** Enter key *****************************************
 	 */
-	void PanelEmployee_Hours::bindEventHandlers() {
-		m_pButton_disconnect->Bind(wxEVT_BUTTON, &PanelEmployee_Hours::onDisconnectButtonClicked, this);
-		m_pButton_confirm->Bind(wxEVT_BUTTON, &PanelEmployee_Hours::onConfirmButtonClicked, this);
-	}
-
 	void PanelEmployee_Hours::onEnterKeyPressed() {
 		sendData();
 	}
 
 	/** ***************************************** Disconnect Button *****************************************
-	 * @brief : When the button disconnect is press,
-	 *	will return to (PanelConnection), after confirmation from the user.
-	 *
 	 * @param evt :
 	 */
 	void PanelEmployee_Hours::onDisconnectButtonClicked(wxCommandEvent& evt) {
-		if (confirmMessageBox("Do you want to disconnect from your session ?", "Disconnect")) {
-			// "dynamic_cast" need to be used, because the method "toPanel_Connection()" only exist in MainFrame, not in wxFrame
-			MainFrame* pMain_frame_dynamic = dynamic_cast<MainFrame*>(pMain_frame); // Safe casting to derived class
-			if (pMain_frame_dynamic) {
-				pMain_frame_dynamic->toPanel_Connection(); // Call the method to switch panels
-			}
-			else {
-				wxMessageBox("Failed to cast MainFrame", "Error", wxOK | wxICON_ERROR);
-			}
-		}
+		toPanelConnection();
 	}
 
 	/** ***************************************** Confirm Button *****************************************
-	 * @brief : Confirm Button
-	 *
 	 * @param evt :
 	 */
 	void PanelEmployee_Hours::onConfirmButtonClicked(wxCommandEvent& evt) {

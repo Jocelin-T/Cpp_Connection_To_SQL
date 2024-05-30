@@ -10,8 +10,11 @@
 
 #include "Employee.h"
 
-class Employee;
-class Panel;
+namespace bll {
+    class Employee;
+    class Panel;
+}
+
 class PanelConnection;
 class PanelEmployee_Hours;
 class PanelAdmin;
@@ -54,7 +57,7 @@ namespace gui {
          * @brief : Will change the panel to (PanelAdmin).
          *
          */
-        void toPanel_Admin();
+        void toPanelAdmin();
 
         /** ***************************************** Switch to (PanelAdmin_EmployeeCreation) *****************************************
          * @brief : Will change the panel to (PanelAdmin_EmployeeCreation).

@@ -21,7 +21,6 @@ namespace gui {
 
 	private:
 		// Static Text
-		wxStaticText* m_pTitle_page;
 		wxStaticText* m_pLast_name;
 		wxStaticText* m_pFirst_name;
 
@@ -45,12 +44,6 @@ namespace gui {
 		 *	"this" make reference to Panel class too
 		 */
 		void initializeComponents();
-
-		/** ***************************************** Bind Handler *****************************************
-		 * @brief : Handle all the buttons bind of this panel.
-		 *
-		 */
-		void bindEventHandlers();
 
 		/** ***************************************** Disconnect Button *****************************************
 		 * @brief : When the button disconnect is press,

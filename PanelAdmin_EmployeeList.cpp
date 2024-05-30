@@ -29,9 +29,7 @@ void PanelAdminEmployeeList::InitializeComponents(){
 	wxBoxSizer* pMain_sizer = new wxBoxSizer(wxVERTICAL);
 
 	// Title of the panel
-	m_pTitle_page = new wxStaticText(this, wxID_ANY, "List of employees");
-	m_pTitle_page->SetFont(global_title_font);
-	pMain_sizer->Add(m_pTitle_page, 0, wxALIGN_CENTER_HORIZONTAL | wxTOP | wxBOTTOM, 40);
+	addPanelTitle(pMain_sizer, "List of employees");
 
 	// Drop down list
 	m_pEmployee_choice = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxSize(200, -1));
@@ -65,13 +63,14 @@ void PanelAdminEmployeeList::InitializeComponents(){
 	pMain_sizer->AddStretchSpacer(1);
 
 	// Buttons at the bottom
-	wxBoxSizer* pButton_sizer = new wxBoxSizer(wxHORIZONTAL);
-	m_pButton_back = new wxButton(this, wxID_ANY, "<< Back");
-	m_pButton_submit = new wxButton(this, wxID_ANY, "Get data");
-	pButton_sizer->Add(m_pButton_back, 0, wxRIGHT, 250);
-	pButton_sizer->Add(m_pButton_submit, 0, wxLEFT, 250);
+	vector_buttons_footer = { m_pButton_back };
+	vector_labels_footer = { "<< Back" };
+	vector_method_footer = {
+		wxCommandEventHandler(PanelAdminEmployeeList::onBackButtonClicked)
+	};
 
-	pMain_sizer->Add(pButton_sizer, 0, wxALIGN_CENTER | wxALL, 10);
+	addFooterButtons(pMain_sizer, vector_buttons_footer, vector_labels_footer, vector_method_footer);
+
 
 	// Set the main sizer for the panel to arrange the sub-widgets
 	this->SetSizer(pMain_sizer);
@@ -85,10 +84,6 @@ void PanelAdminEmployeeList::InitializeComponents(){
 *
 */
 void PanelAdminEmployeeList::BindEventHandlers(){
-
-	m_pButton_back->Bind(wxEVT_BUTTON, &PanelAdminEmployeeList::onBackButtonClicked, this);
-	m_pButton_submit->Bind(wxEVT_BUTTON, &PanelAdminEmployeeList::onSubmitButtonClicked, this);
-
 	// Bind change events
 	m_pEmployee_choice->Bind(wxEVT_CHOICE, &PanelAdminEmployeeList::onEmployeeChoiceChanged, this);
 	m_pRadio_choices->Bind(wxEVT_RADIOBOX, &PanelAdminEmployeeList::onHoursSelectionChanged, this);
@@ -102,18 +97,7 @@ void PanelAdminEmployeeList::BindEventHandlers(){
 * @param evt :
 */
 void PanelAdminEmployeeList::onBackButtonClicked(wxCommandEvent& evt){
-	// "dynamic_cast" need to be used, because the method "toPanel_Admin()" only exist in MainFrame, not in wxFrame
-	MainFrame* pMain_frame_dynamic = dynamic_cast<MainFrame*>(pMain_frame); // Safe casting to derived class
-	if (pMain_frame_dynamic) {
-		pMain_frame_dynamic->toPanel_Admin(); // Call the method to switch panels
-	}
-	else {
-		wxMessageBox("Failed to cast MainFrame", "Error", wxOK | wxICON_ERROR);
-	}
-}
-
-void PanelAdminEmployeeList::onSubmitButtonClicked(wxCommandEvent& evt){
-	UpdatePanelHours();
+	toPanelAdmin();
 }
 
 void PanelAdminEmployeeList::onEmployeeChoiceChanged(wxCommandEvent& evt){
@@ -204,6 +188,8 @@ void PanelAdminEmployeeList::UpdatePanelHours(){
 	// Pointer of a new Salary object
 	bll::Salary* pSalary_details = new bll::Salary(selected_employee_id, selected_date.ToStdString());
 
+
+
 	// GUI
 	wxStaticText* pSalary_text = new wxStaticText(m_pPanel_hours, wxID_ANY,
 		wxString::Format("Employee: %d - %s %s\n"
@@ -255,7 +241,6 @@ int PanelAdminEmployeeList::getChoiceEmployeeId() {
 int PanelAdminEmployeeList::getRadioBoxId() {
 	return m_pRadio_choices->GetSelection();
 }
-
 wxString PanelAdminEmployeeList::getDate() {
 	return wxString(m_pDate->GetValue());
 }

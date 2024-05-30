@@ -15,6 +15,24 @@ namespace bll {
 		createDailySalary(employee_id, entry_date);
 	}
 
+	std::vector<Salary> Salary::getSalaries(const int employee_id, const std::string& entry_date, const int period, const int salary_per_hour){
+		std::vector<Salary> list_salaries;
+		switch (period){
+		case 1: // Daily
+
+			break;
+		case 2: // Weekly
+
+			break;
+		case 3: // Yearly
+
+			break;
+		default:
+			break;
+		}
+		return std::vector<Salary>();
+	}
+
 	/** ***************************************** Creation of a new daily salary *****************************************
 	 * @brief : Create a salary for the given employee id and date with
 	 *	a pointer for the Entry, a pointer for the Employee and the wages according to the Entry found.

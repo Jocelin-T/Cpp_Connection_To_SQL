@@ -7,7 +7,6 @@
  *********************************************************************/
 #include "MainFrame.h"
 
-#include "Employee.h"
 #include "Panel.h"
 #include "PanelConnection.h"
 #include "PanelEmployee_Hours.h"
@@ -26,7 +25,7 @@ namespace gui {
 		Show(true);
 	}
 
-	/** ####################################### User ##################################### */
+	/** ####################################### Employee ##################################### */
 	/**  ***************************************** Switch to (PanelEmployee_Hours) *****************************************
 	 * @brief : Will change the panel to (PanelEmployee_Hours).
 	 * 
@@ -44,13 +43,12 @@ namespace gui {
 		SwitchPanel(new PanelConnection(this, this));
 	}
 
-
 	/** ####################################### Admin ##################################### */
 	/** ***************************************** Switch to (PanelAdmin) *****************************************
 	 * @brief : Will change the panel to (PanelAdmin).
 	 * 
 	 */
-	void MainFrame::toPanel_Admin(){
+	void MainFrame::toPanelAdmin(){
 		SwitchPanel(new PanelAdmin(this, this));
 	}
 

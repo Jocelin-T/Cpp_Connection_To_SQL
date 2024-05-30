@@ -22,9 +22,6 @@ namespace gui {
 		void onEnterKeyPressed() override;
 
 	private:
-		// Title of this Panel
-		wxStaticText* m_pTitle_page;
-
 		// Text fields
 		wxTextCtrl* m_pEmail;
 		wxTextCtrl* m_pPassword;
@@ -39,12 +36,6 @@ namespace gui {
 		 *	"this" make reference to Panel class too
 		 */
 		void initializeComponents();
-
-		/** ***************************************** Bind Handler *****************************************
-		 * @brief : Handle all the buttons bind of this panel.
-		 *
-		 */
-		void bindEventHandlers();
 
 		/** ***************************************** Connect Button *****************************************
 		 * @brief : Connect button.
@@ -66,7 +57,7 @@ namespace gui {
 		 */
 		void connectUser();
 
-
+		// Getter
 		wxString getEmail();
 		wxString getPassword();
 

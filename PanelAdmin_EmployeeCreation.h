@@ -9,10 +9,7 @@
 #pragma once
 #include <wx/wx.h>
 
-//#include "AppGlobals.h"
 #include "Panel.h"
-//#include "Employee.h"
-//#include "SqlQuery.h"
 
 namespace gui{
     class PanelAdmin_EmployeeCreation : public Panel {
@@ -21,9 +18,6 @@ namespace gui{
         PanelAdmin_EmployeeCreation(wxWindow* parent, wxFrame* pMain_frame);
 
     private:
-        // Title of the panel
-        wxStaticText* m_pTitle_page;
-
         // Text Fields
         wxTextCtrl* m_pLast_name;
         wxTextCtrl* m_pFirst_name;
@@ -42,12 +36,6 @@ namespace gui{
          *	"this" make reference to Panel class too
          */
         void InitializeComponents();
-
-        /** ***************************************** Bind Handler *****************************************
-         * @brief : Handle all the buttons bind of this panel.
-         *
-         */
-        void BindEventHandlers();
 
         /** ***************************************** Add Button *****************************************
          * @brief : The button "Create Employee" will display in a message box

@@ -12,10 +12,153 @@ namespace gui{
 	// Constructor initializes the Panel with a parent window 
 	// and optionally with a pointer to the main frame
 	Panel::Panel(wxWindow* pParent, wxFrame* pMain_frame) 
-		: wxPanel(pParent), pMain_frame(pMain_frame)
+		: wxPanel(pParent), m_pMain_frame(pMain_frame)
 	{
 		// Use wxEVT_CHAR_HOOK to catch all key events including Enter
 		this->Bind(wxEVT_CHAR_HOOK, &Panel::onKeyDown, this);
+	}
+
+	/** ***************************************** Add title to Panel *****************************************
+	 * @brief : Will add the title to the current Panel.
+	 * 
+	 * @param current_panel : wxPanel* => panel where the title is display (probably this)
+	 * @param box_sizer : wxBoxSizer* => box sizer holding the title
+	 * @param title : wxString& => title
+	 */
+	void Panel::addPanelTitle(wxBoxSizer* box_sizer, const wxString& title){
+		wxBoxSizer* pSizer = new wxBoxSizer(wxVERTICAL);
+		wxStaticText* pTitle_page = new wxStaticText(this, wxID_ANY, title);
+		pTitle_page->SetFont(global_title_font);
+		box_sizer->Add(pTitle_page, 0, wxALIGN_CENTER_HORIZONTAL | wxTOP | wxBOTTOM, 40);
+	}
+
+	/** ***************************************** Label and Text Control *****************************************
+	 * @brief : Create a label with is text control under.
+	 * 
+	 * @param box_sizer : wxBoxSizer* => box wizer where this will be display
+	 * @param label : wxString& => label of the text control
+	 * @param default_value : wxString& => value of the text control, empty by default
+	 * @param style : long => style if the wxTextCtrl, no style by default
+	 * @return  : wxTextCtrl* => a label with is text control
+	 */
+	wxTextCtrl* Panel::pAddLabelAndTextControl(wxBoxSizer* box_sizer, const wxString& label, const wxString& default_value, long style) {
+		wxBoxSizer* pSizer = new wxBoxSizer(wxVERTICAL);
+		wxStaticText* pLabel_text = new wxStaticText(this, wxID_ANY, label);
+		wxTextCtrl* pText_ctrl = new wxTextCtrl(this, wxID_ANY, default_value, wxDefaultPosition, wxDefaultSize, style);
+		pSizer->Add(pLabel_text, 0, wxBOTTOM, 5);  // Add some space below the label
+		pSizer->Add(pText_ctrl, 1, wxEXPAND); // Expand to fill available horizontal space
+		box_sizer->Add(pSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, 40);
+		return pText_ctrl;
+	}
+
+	// *********************************************************** Should Work ***********************************************************
+	void Panel::addFooterButtons(wxBoxSizer* main_sizer, std::vector<wxButton*>& buttons, const std::vector<wxString>& labels){
+		wxBoxSizer* button_sizer = new wxBoxSizer(wxHORIZONTAL);
+
+		size_t button_count = labels.size();
+		buttons.resize(button_count);
+
+		if (button_count == 1) {
+			buttons[0] = new wxButton(this, wxID_ANY, labels[0]);
+			button_sizer->Add(buttons[0], 0, wxRIGHT, 250);
+			button_sizer->AddStretchSpacer(1);
+		}
+		else if (button_count == 2) {
+			buttons[0] = new wxButton(this, wxID_ANY, labels[0]);
+			buttons[1] = new wxButton(this, wxID_ANY, labels[1]);
+			button_sizer->Add(buttons[0], 0, wxRIGHT, 250);
+			button_sizer->AddStretchSpacer(1);
+			button_sizer->Add(buttons[1], 0, wxLEFT, 250);
+		}
+		else {
+			for (size_t i = 0; i < button_count; ++i) {
+				buttons[i] = new wxButton(this, wxID_ANY, labels[i]);
+				if (i > 0) {
+					button_sizer->AddStretchSpacer(1); // Add spacer between buttons
+				}
+				button_sizer->Add(buttons[i], 0, wxLEFT | wxRIGHT, 10); // Add some padding around buttons
+			}
+		}
+		main_sizer->Add(button_sizer, 0, wxEXPAND | wxALL, 10);
+	}
+	// *********************************************************** Should work ***********************************************************
+
+
+	/** ***************************************** Buttons Footer *****************************************
+	 * @brief : Construct and insert a sizer with the number of choosed buttons and display them evenly.
+	 * 
+	 * @param main_sizer : wxBoxSizer* => where this sizer gonna be insert
+	 * @param buttons : std::vector<wxButton*>& => vector holding all buttons
+	 * @param labels : std::vector<wxString>& => vector holding all labels of the buttons
+	 * @param method : std::vector<wxObjectEventFunction> => vector holding all methods,
+	 *	 required to pass: wxCommandEventHandler(Class::method)
+	 */
+	void Panel::addFooterButtons(wxBoxSizer* main_sizer, std::vector<wxButton*>& buttons,
+		const std::vector<wxString>& labels, std::vector<wxObjectEventFunction> method) {
+		wxBoxSizer* button_sizer = new wxBoxSizer(wxHORIZONTAL);
+
+		// Add wxButton* in case there is only a label
+		size_t button_count = labels.size();
+		buttons.resize(button_count);
+
+		if (button_count == 1) {
+			buttons[0] = new wxButton(this, wxID_ANY, labels[0]);
+			button_sizer->Add(buttons[0], 0, wxRIGHT, 10);
+			button_sizer->AddStretchSpacer(1);
+			buttons[0]->Bind(wxEVT_BUTTON, method[0], this);
+		}
+		else if (button_count == 2) {
+			buttons[0] = new wxButton(this, wxID_ANY, labels[0]);
+			buttons[1] = new wxButton(this, wxID_ANY, labels[1]);
+			button_sizer->Add(buttons[0], 0, wxRIGHT, 10);
+			button_sizer->AddStretchSpacer(1);
+			button_sizer->Add(buttons[1], 0, wxLEFT, 10);
+			buttons[0]->Bind(wxEVT_BUTTON, method[0], this);
+			buttons[1]->Bind(wxEVT_BUTTON, method[1], this);
+		}
+		else {
+			for (size_t i = 0; i < button_count; ++i) {
+				buttons[i] = new wxButton(this, wxID_ANY, labels[i]);
+				if (i > 0) {
+					button_sizer->AddStretchSpacer(1); // Add spacer between buttons
+				}
+				button_sizer->Add(buttons[i], 0, wxLEFT | wxRIGHT, 10); // Add some padding around buttons
+				buttons[i]->Bind(wxEVT_BUTTON, method[i], this);
+			}
+		}
+		main_sizer->Add(button_sizer, 0, wxEXPAND | wxLEFT | wxRIGHT, 50);
+	}
+
+	/** ***************************************** to Panel Admin *****************************************
+	 * @brief : When call, switch to the Panel Admin.
+	 * 
+	 */
+	void Panel::toPanelAdmin() {
+		// "dynamic_cast" need to be used, because the method "toPanelAdmin()" only exist in MainFrame, not in wxFrame
+		MainFrame* pMain_frame_dynamic = dynamic_cast<MainFrame*>(m_pMain_frame); // Safe casting to derived class
+		if (pMain_frame_dynamic) {
+			pMain_frame_dynamic->toPanelAdmin(); // Call the method to switch panels
+		}
+		else {
+			wxMessageBox("Failed to cast MainFrame", "Error", wxOK | wxICON_ERROR);
+		}
+	}
+
+	/** ***************************************** to Panel Connection *****************************************
+	 * @brief : When call, switch to the Panel Connection after a confirmation from the User.
+	 * 
+	 */
+	void Panel::toPanelConnection()	{
+		if (confirmMessageBox("Do you want to disconnect from your session ?", "Disconnect")) {
+			// "dynamic_cast" need to be used, because the method "toPanel_Connection()" only exist in MainFrame, not in wxFrame
+			MainFrame* pMain_frame_dynamic = dynamic_cast<MainFrame*>(m_pMain_frame); // Safe casting to derived class
+			if (pMain_frame_dynamic) {
+				pMain_frame_dynamic->toPanel_Connection(); // Call the method to switch panels
+			}
+			else {
+				wxMessageBox("Failed to cast MainFrame", "Error", wxOK | wxICON_ERROR);
+			}
+		}
 	}
 
 	/** ***************************************** Enter key *****************************************
@@ -51,16 +194,12 @@ namespace gui{
 
 		switch (result) {
 		case wxID_YES:
-			//wxLogStatus("Yes");
 			return true;
 		case wxID_NO:
-			//wxLogStatus("No");
 			return false;
 		case wxID_CANCEL:
-			//wxLogStatus("Cancel");
 			return false;
 		default:
-			//wxLogStatus("Default");
 			return false;
 		}
 	}
