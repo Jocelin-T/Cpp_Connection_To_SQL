@@ -72,7 +72,7 @@ namespace bll {
 		}
 	}
 
-	/** ***************************************** Create Employee *****************************************
+	/** ***************************************** Create new Employee *****************************************
 	 * @brief : Create a new employee inside the DB with the given parameters, all are required.
 	 *
 	 * @param emp_last_name : std::string& => employee last name
@@ -85,8 +85,8 @@ namespace bll {
 		dal::SqlQuery sql_connection;
 		if (sql_connection.connectToDB()) {
 			Employee employee;
-			employee.setLastName(emp_last_name);
-			employee.setFirstName(emp_first_name);
+			employee.setLastName(formatLastName(emp_last_name));
+			employee.setFirstName(formatFirstName(emp_first_name));
 			employee.setEmail(emp_email);
 			employee.setPassword(emp_password);
 
@@ -167,5 +167,50 @@ namespace bll {
 
 		return Employee(employee);
 	}
+
+	 /** ***************************************** First Name Format *****************************************
+	  * @brief : Transform the std::string received in this format: (Examplename) or (Example-Name).
+	  * 
+	  * @param first_name : std::string& => first name
+	  * @return  : std::string
+	  */
+	 std::string formatFirstName(const std::string& first_name) {
+		 std::string formatted_name;
+		 bool new_segment = true; // To track the start of a new segment after a hyphen
+
+		 for (char c : first_name) {
+			 if (new_segment) {
+				 formatted_name += std::toupper(c);
+				 new_segment = false;
+			 }
+			 else {
+				 formatted_name += std::tolower(c);
+			 }
+
+			 if (c == '-') {
+				 new_segment = true; // Reset for new segment
+			 }
+		 }
+		 return formatted_name;
+	 }
+
+	 /** ***************************************** Last Name Format *****************************************
+	  * @brief : Transform the std::string received in this format: (EXAMPLENAME) or (EXAMPLE-NAME) or (EXEMPLE NAME).
+	  * 
+	  * @param last_name : std::string& => last name
+	  * @return  : std::string
+	  */
+	 std::string formatLastName(const std::string& last_name) {
+		 std::string formatted_name;
+		 for (char c : last_name) {
+			 if (c == '-' || c == ' ') {
+				 formatted_name += c; // Preserve hyphens and spaces
+			 }
+			 else {
+				 formatted_name += std::toupper(c);
+			 }
+		 }
+		 return formatted_name;
+	 }
 
 } // namespace bll

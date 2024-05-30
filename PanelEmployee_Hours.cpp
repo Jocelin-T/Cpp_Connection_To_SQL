@@ -13,7 +13,6 @@ namespace gui {
 		: Panel{ pParent, pMain_frame }, m_employee{ employee }
 	{
 		initializeComponents();
-		bindEventHandlers();
 	}
 
 	/** ####################################### GUI #####################################
@@ -41,15 +40,15 @@ namespace gui {
 		// Add a flexible spacer to push the buttons to the bottom
 		pMain_sizer->AddStretchSpacer(1); // This adds a stretchable space that expands
 
-		// Buttons at the bottom
-		wxBoxSizer* pButton_sizer = new wxBoxSizer(wxHORIZONTAL);
-		m_pButton_disconnect = new wxButton(this, wxID_ANY, "Disconnect");
-		m_pButton_confirm = new wxButton(this, wxID_ANY, "Confirm Entry");
-		pButton_sizer->Add(m_pButton_disconnect, 0, wxRIGHT, 250);
-		pButton_sizer->Add(m_pButton_confirm, 0, wxLEFT, 250);
+		// Add footer button
+		vector_buttons_footer = { m_pButton_disconnect, m_pButton_confirm };
+		vector_labels_footer = { "Disconnect", "Confirm Entry" };
+		vector_method_footer = {
+			wxCommandEventHandler(PanelEmployee_Hours::onDisconnectButtonClicked),
+			wxCommandEventHandler(PanelEmployee_Hours::onConfirmButtonClicked)
+		};
 
-		// Add buttons without top space pushing down
-		pMain_sizer->Add(pButton_sizer, 0, wxALIGN_CENTER | wxALL, 10);
+		addFooterButtons(pMain_sizer, vector_buttons_footer, vector_labels_footer, vector_method_footer);
 
 		// Set the main sizer for the panel to arrange the sub-widgets
 		this->SetSizer(pMain_sizer);
@@ -59,41 +58,20 @@ namespace gui {
 	}
 
 	/** ####################################### Buttons ##################################### */
-	/** ***************************************** Bind Handler *****************************************
-	 * @brief : Handle all the buttons bind of this panel.
-	 *
+	/** ***************************************** Enter key *****************************************
 	 */
-	void PanelEmployee_Hours::bindEventHandlers() {
-		m_pButton_disconnect->Bind(wxEVT_BUTTON, &PanelEmployee_Hours::onDisconnectButtonClicked, this);
-		m_pButton_confirm->Bind(wxEVT_BUTTON, &PanelEmployee_Hours::onConfirmButtonClicked, this);
-	}
-
 	void PanelEmployee_Hours::onEnterKeyPressed() {
 		sendData();
 	}
 
 	/** ***************************************** Disconnect Button *****************************************
-	 * @brief : When the button disconnect is press,
-	 *	will return to (PanelConnection), after confirmation from the user.
-	 *
 	 * @param evt :
 	 */
 	void PanelEmployee_Hours::onDisconnectButtonClicked(wxCommandEvent& evt) {
-		if (confirmMessageBox("Do you want to disconnect from your session ?", "Disconnect")) {
-			// "dynamic_cast" need to be used, because the method "toPanel_Connection()" only exist in MainFrame, not in wxFrame
-			MainFrame* pMain_frame_dynamic = dynamic_cast<MainFrame*>(pMain_frame); // Safe casting to derived class
-			if (pMain_frame_dynamic) {
-				pMain_frame_dynamic->toPanel_Connection(); // Call the method to switch panels
-			}
-			else {
-				wxMessageBox("Failed to cast MainFrame", "Error", wxOK | wxICON_ERROR);
-			}
-		}
+		toPanelConnection();
 	}
 
 	/** ***************************************** Confirm Button *****************************************
-	 * @brief : Confirm Button
-	 *
 	 * @param evt :
 	 */
 	void PanelEmployee_Hours::onConfirmButtonClicked(wxCommandEvent& evt) {

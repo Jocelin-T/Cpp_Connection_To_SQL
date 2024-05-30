@@ -37,12 +37,6 @@ namespace gui {
 		 */
 		void initializeComponents();
 
-		/** ***************************************** Bind Handler *****************************************
-		 * @brief : Handle all the buttons bind of this panel.
-		 *
-		 */
-		void bindEventHandlers();
-
 		/** ***************************************** Connect Button *****************************************
 		 * @brief : Connect button.
 		 *
@@ -63,7 +57,7 @@ namespace gui {
 		 */
 		void connectUser();
 
-
+		// Getter
 		wxString getEmail();
 		wxString getPassword();
 

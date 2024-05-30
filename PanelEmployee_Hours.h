@@ -45,12 +45,6 @@ namespace gui {
 		 */
 		void initializeComponents();
 
-		/** ***************************************** Bind Handler *****************************************
-		 * @brief : Handle all the buttons bind of this panel.
-		 *
-		 */
-		void bindEventHandlers();
-
 		/** ***************************************** Disconnect Button *****************************************
 		 * @brief : When the button disconnect is press,
 		 *	will return to the main page (PanelConnection), after confirmation from the user.

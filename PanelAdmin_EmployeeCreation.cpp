@@ -12,7 +12,6 @@ namespace gui{
 	PanelAdmin_EmployeeCreation::PanelAdmin_EmployeeCreation(wxWindow* parent, wxFrame* pMain_frame)
 		: Panel(parent, pMain_frame){
 		InitializeComponents();
-		BindEventHandlers();
 	}
 
 	/** ####################################### GUI #####################################
@@ -35,14 +34,15 @@ namespace gui{
 		// Add a flexible spacer to push the buttons to the bottom
 		pMain_sizer->AddStretchSpacer(1);
 
-		// Buttons at the bottom
-		wxBoxSizer* pButton_sizer = new wxBoxSizer(wxHORIZONTAL);
-		m_pButton_back = new wxButton(this, wxID_ANY, "<< Back");
-		m_pButton_add = new wxButton(this, wxID_ANY, "Create Employee");
-		pButton_sizer->Add(m_pButton_back, 0, wxRIGHT, 250);
-		pButton_sizer->Add(m_pButton_add, 0, wxLEFT, 250);
+		// Add footer button
+		vector_buttons_footer = { m_pButton_back, m_pButton_add };
+		vector_labels_footer = { "<< Back", "Create Employee" };
+		vector_method_footer = {
+			wxCommandEventHandler(PanelAdmin_EmployeeCreation::onBackButtonClicked),
+			wxCommandEventHandler(PanelAdmin_EmployeeCreation::onAddButtonClicked)
+		};
 
-		pMain_sizer->Add(pButton_sizer, 0, wxALIGN_CENTER | wxALL, 10);
+		addFooterButtons(pMain_sizer, vector_buttons_footer, vector_labels_footer, vector_method_footer);
 
 		// Set the main sizer for the panel to arrange the sub-widgets
 		this->SetSizer(pMain_sizer);
@@ -52,15 +52,6 @@ namespace gui{
 	}
 
 	/** ####################################### Buttons ##################################### */
-	/** ***************************************** Bind Handler *****************************************
-	 * @brief : Handle all the buttons bind of this panel.
-	 * 
-	 */
-	void PanelAdmin_EmployeeCreation::BindEventHandlers() {
-		m_pButton_add->Bind(wxEVT_BUTTON, &PanelAdmin_EmployeeCreation::onAddButtonClicked, this);
-		m_pButton_back->Bind(wxEVT_BUTTON, &PanelAdmin_EmployeeCreation::onBackButtonClicked, this);
-	}
-
 	/** ***************************************** Entrer key *****************************************
 	 */
 	void PanelAdmin_EmployeeCreation::onEnterKeyPressed() {
@@ -75,25 +66,13 @@ namespace gui{
 	}
 
 	/** ***************************************** Back Button *****************************************
-	 * @brief : When the button disconnect is press,
-	 *	will return to (PanelAdmin).
-	 * 
 	 * @param evt :
 	 */
 	void PanelAdmin_EmployeeCreation::onBackButtonClicked(wxCommandEvent& evt){
-		// "dynamic_cast" need to be used, because the method "toPanel_Admin()" only exist in MainFrame, not in wxFrame
-		MainFrame* pMain_frame_dynamic = dynamic_cast<MainFrame*>(pMain_frame); // Safe casting to derived class
-		if (pMain_frame_dynamic) {
-			pMain_frame_dynamic->toPanel_Admin(); // Call the method to switch panels
-		}
-		else {
-			wxMessageBox("Failed to cast MainFrame", "Error", wxOK | wxICON_ERROR);
-		}
+		toPanelAdmin();
 	}
 
-
 	/** ####################################### Utilities ##################################### */
-
 	void PanelAdmin_EmployeeCreation::createEmployee() {
 		// Validation of the fields
 		if (!validateInput()) {

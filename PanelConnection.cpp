@@ -11,7 +11,6 @@ namespace gui{
 	PanelConnection::PanelConnection(wxWindow* pParent, wxFrame* pMain_frame)
 		: Panel(pParent, pMain_frame) {
 		initializeComponents();
-		bindEventHandlers();
 	}
 
 	/**  ####################################### GUI #####################################
@@ -32,15 +31,15 @@ namespace gui{
 		// Add a flexible spacer to push the buttons to the bottom
 		pMain_sizer->AddStretchSpacer(1); // This adds a stretchable space that expands
 
-		// Buttons at the bottom
-		wxBoxSizer* pButton_sizer = new wxBoxSizer(wxHORIZONTAL);
-		m_pButton_exit = new wxButton(this, wxID_ANY, "Exit");
-		m_pButton_connect = new wxButton(this, wxID_ANY, "Connect");
-		pButton_sizer->Add(m_pButton_exit, 0, wxRIGHT, 250);
-		pButton_sizer->Add(m_pButton_connect, 0, wxLEFT, 250);
+		// Add footer button
+		vector_buttons_footer = { m_pButton_exit, m_pButton_connect };
+		vector_labels_footer = { "Exit", "Connect" };
+		vector_method_footer = { 
+			wxCommandEventHandler(PanelConnection::onExitButtonClicked), 
+			wxCommandEventHandler(PanelConnection::onConnectButtonClicked) 
+		};
 
-		// Add buttons without top space pushing down
-		pMain_sizer->Add(pButton_sizer, 0, wxALIGN_CENTER | wxALL, 10);
+		addFooterButtons(pMain_sizer, vector_buttons_footer, vector_labels_footer, vector_method_footer);
 
 		// Set the main sizer for the panel to arrange the sub-widgets
 		this->SetSizer(pMain_sizer);
@@ -48,14 +47,6 @@ namespace gui{
 	}
 
 	/** ####################################### Buttons ##################################### */
-	/** ***************************************** Bind Handler *****************************************
-	 * @brief : Handle all the buttons bind of this panel.
-	 *
-	 */
-	void PanelConnection::bindEventHandlers() {
-		m_pButton_exit->Bind(wxEVT_BUTTON, &PanelConnection::onExitButtonClicked, this);
-		m_pButton_connect->Bind(wxEVT_BUTTON, &PanelConnection::onConnectButtonClicked, this);
-	}
 	/** ***************************************** Enter key *****************************************
 	 */
 	void PanelConnection::onEnterKeyPressed() {
@@ -78,8 +69,8 @@ namespace gui{
 	 */
 	void PanelConnection::onExitButtonClicked(wxCommandEvent& evt) {
 		if (confirmMessageBox("Do you want to quit the program ?", "Exit Program")) {
-			if (pMain_frame) {
-				pMain_frame->Close(true);
+			if (m_pMain_frame) {
+				m_pMain_frame->Close(true);
 			}
 		}
 	}
@@ -96,34 +87,32 @@ namespace gui{
 
 		// Check if the fields are empty and send an error message
 		if (email.empty() || password.empty()) {
-			wxMessageBox("Missing entry", "Error", wxOK | wxICON_ERROR);
+			wxMessageBox("Missing entry", "Error", wxOK | wxICON_WARNING);
 			return;
 		}
 
 		if (email == wxString(ADMIN_EMAIL)) { // If the user try to connect as Admin
 			if (bll::checkAdminConnection(email.ToStdString(), password.ToStdString())) {
-				MainFrame* mainFrame = dynamic_cast<MainFrame*>(pMain_frame); // Safe casting
+				MainFrame* mainFrame = dynamic_cast<MainFrame*>(m_pMain_frame); // Safe casting
 				if (mainFrame) { // Connect him in the (PanelAdmin)
-					mainFrame->toPanel_Admin();
+					mainFrame->toPanelAdmin();
 				}
 			}
 			else {
-				wxMessageBox("Invalid email or password", "Login Failed", wxOK | wxICON_ERROR);
+				wxMessageBox("Invalid email or password", "Login Failed", wxOK | wxICON_WARNING);
 			}
 		}
 		else if (bll::checkEmployeeConnection(email.ToStdString(), password.ToStdString())) { // if it's an Employee
-			MainFrame* mainFrame = dynamic_cast<MainFrame*>(pMain_frame); // Safe casting
+			MainFrame* mainFrame = dynamic_cast<MainFrame*>(m_pMain_frame); // Safe casting
 			if (mainFrame) { // Connect him in the (PanelEmployee_Hours)
 				bll::Employee employee_details = bll::getEmployeeWithEmailAndPw(email.ToStdString(), password.ToStdString());
 				mainFrame->toPanel_Employee_Hours(employee_details);
 			}
 		}
 		else {
-			wxMessageBox("Invalid email or password", "Login Failed", wxOK | wxICON_ERROR);
+			wxMessageBox("Invalid email or password", "Login Failed", wxOK | wxICON_WARNING);
 		}
 	}
-
-
 
 
 	/** ####################################### Getter ##################################### */

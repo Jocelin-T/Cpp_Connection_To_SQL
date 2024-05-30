@@ -74,7 +74,6 @@ namespace gui {
          * 
          * @param evt :
          */
-        void onSubmitButtonClicked(wxCommandEvent& evt);
         void onEmployeeChoiceChanged(wxCommandEvent& evt);
         void onHoursSelectionChanged(wxCommandEvent& evt);
         void onDateChanged(wxCommandEvent& evt);

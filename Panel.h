@@ -8,6 +8,7 @@
 #pragma once
 #include <wx/wx.h>
 #include <regex>
+#include <vector>
 
 #include "AppGlobals.h"
 #include "MainFrame.h"
@@ -21,7 +22,6 @@ namespace gui {
 		// and optionally with a pointer to the main frame (nullptr = optional in this case)
 		Panel(wxWindow* pParent, wxFrame* pMain_frame = nullptr);
 
-	
 	protected:
 		const std::regex M_DATE_PATTERN{ R"(^\d{4}-\d{2}-\d{2}$)" }; // YYYY-MM-DD
 		const std::regex M_HOUR_PATTERN{ R"(^([01]\d|2[0-3]):([0-5]\d)$)" }; // HH:MM
@@ -31,9 +31,15 @@ namespace gui {
 		const std::regex M_PASSWORD_PATTERN_STRONG{
 			R"((?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,})" 
 		};// at least 12 characters, including at least one uppercase letter,
-		//one lowercase letter, one number, and one special character
+		// one lowercase letter, one number, and one special character
 
-		wxFrame* pMain_frame; // Pointer to the main frame
+		wxFrame* m_pMain_frame; // Pointer to the main frame
+
+		// Vector for the footer buttons
+		std::vector<wxButton*> vector_buttons_footer = {};
+		std::vector<wxString> vector_labels_footer = {};
+		std::vector<wxObjectEventFunction> vector_method_footer = {};
+
 
 		/** ***************************************** Add title to Panel *****************************************
 		 * @brief : Will add the title to the current Panel.
@@ -56,6 +62,37 @@ namespace gui {
 		wxTextCtrl* pAddLabelAndTextControl(wxBoxSizer* box_sizer, const wxString& label,
 			const wxString& default_value = "",
 			long style = 0);
+
+		// Should work ?
+		void addFooterButtons(wxBoxSizer* main_sizer,
+			std::vector<wxButton*>& buttons,
+			const std::vector<wxString>& labels);
+
+		/** ***************************************** Footer Buttons *****************************************
+		 * @brief : Construct and insert a sizer with the number of choosed buttons and display them evenly.
+		 *
+		 * @param main_sizer : wxBoxSizer* => where this sizer gonna be insert
+		 * @param buttons : std::vector<wxButton*>& => vector holding all buttons
+		 * @param labels : std::vector<wxString>& => vector holding all label of the buttons
+		 * @param method : std::vector<wxObjectEventFunction> => vector holding all methods
+		 *				"wxCommandEventHandler(Class::method)"
+		 */
+		void addFooterButtons(wxBoxSizer* main_sizer, 
+			std::vector<wxButton*>& buttons,
+			const std::vector<wxString>& labels,
+			std::vector<wxObjectEventFunction> method);
+
+		/** ***************************************** to Panel Admin *****************************************
+		 * @brief : When call switch to the Panel Admin.
+		 *
+		 */
+		void toPanelAdmin();
+
+		/** ***************************************** to Panel Connection *****************************************
+		 * @brief : When call switch to the Panel Connection after a confirmation from the User.
+		 *
+		 */
+		void toPanelConnection();
 
 		/** ***************************************** Enter key *****************************************
 		 * @brief : Default implementation does nothing.

@@ -6,6 +6,11 @@
  * @date   21 May 2024
  *********************************************************************/
 #pragma once
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <cctype>
+
 #include "SqlQuery.h"
 
 // Forward declaration
@@ -89,5 +94,21 @@ namespace bll {
 	 * @return  : Employee => with email, last name, first name, employee ID
 	 */
 	Employee getEmployeeWithEmailAndPw(const std::string& email, const std::string& password);
+
+	/** ***************************************** First Name Format *****************************************
+	 * @brief : Transform the std::string received in this format: (Examplename) or (Example-Name).
+	 *
+	 * @param first_name : std::string& => first name
+	 * @return  : std::string
+	 */
+	std::string formatFirstName(const std::string& first_name);
+
+	/** ***************************************** Last Name Format *****************************************
+	 * @brief : Transform the std::string received in this format: (EXAMPLENAME) or (EXAMPLE-NAME) or (EXEMPLE NAME).
+	 *
+	 * @param last_name : std::string& => last name
+	 * @return  : std::string
+	 */
+	std::string formatLastName(const std::string& last_name);
 
 } // namespace BLL

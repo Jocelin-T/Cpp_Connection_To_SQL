@@ -67,11 +67,11 @@ void Entry::calculateDailyHours(Entry& entry) {
  * @return  : int, number of minutes
  */
 int Entry::parseTimeToMinutes(const std::string& time) {
-	std::istringstream timeStream(time);
+	std::istringstream time_stream(time);
 	int hours, minutes;
 	char colon;
 
-	timeStream >> hours >> colon >> minutes;
+	time_stream >> hours >> colon >> minutes;
 
 	return hours * 60 + minutes;
 }
