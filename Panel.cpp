@@ -37,7 +37,7 @@ namespace gui{
 	 * 
 	 * @param box_sizer : wxBoxSizer* => box wizer where this will be display
 	 * @param label : wxString& => label of the text control
-	 * @param default_value :	wxString& => value of the text control, empty by default
+	 * @param default_value : wxString& => value of the text control, empty by default
 	 * @param style : long => style if the wxTextCtrl, no style by default
 	 * @return  : wxTextCtrl* => a label with is text control
 	 */
@@ -89,28 +89,30 @@ namespace gui{
 	 * 
 	 * @param main_sizer : wxBoxSizer* => where this sizer gonna be insert
 	 * @param buttons : std::vector<wxButton*>& => vector holding all buttons
-	 * @param labels : std::vector<wxString>& => vector holding all label of the buttons
-	 * @param method : std::vector<wxObjectEventFunction> => vector holding all methods "wxCommandEventHandler(Class::method)"
+	 * @param labels : std::vector<wxString>& => vector holding all labels of the buttons
+	 * @param method : std::vector<wxObjectEventFunction> => vector holding all methods,
+	 *	 required to pass: wxCommandEventHandler(Class::method)
 	 */
 	void Panel::addFooterButtons(wxBoxSizer* main_sizer, std::vector<wxButton*>& buttons,
 		const std::vector<wxString>& labels, std::vector<wxObjectEventFunction> method) {
 		wxBoxSizer* button_sizer = new wxBoxSizer(wxHORIZONTAL);
 
+		// Add wxButton* in case there is only a label
 		size_t button_count = labels.size();
 		buttons.resize(button_count);
 
 		if (button_count == 1) {
 			buttons[0] = new wxButton(this, wxID_ANY, labels[0]);
-			button_sizer->Add(buttons[0], 0, wxRIGHT, 250);
-			//button_sizer->AddStretchSpacer(1);
+			button_sizer->Add(buttons[0], 0, wxRIGHT, 10);
+			button_sizer->AddStretchSpacer(1);
 			buttons[0]->Bind(wxEVT_BUTTON, method[0], this);
 		}
 		else if (button_count == 2) {
 			buttons[0] = new wxButton(this, wxID_ANY, labels[0]);
 			buttons[1] = new wxButton(this, wxID_ANY, labels[1]);
-			button_sizer->Add(buttons[0], 0, wxRIGHT, 250);
-			//button_sizer->AddStretchSpacer(1);
-			button_sizer->Add(buttons[1], 0, wxLEFT, 250);
+			button_sizer->Add(buttons[0], 0, wxRIGHT, 10);
+			button_sizer->AddStretchSpacer(1);
+			button_sizer->Add(buttons[1], 0, wxLEFT, 10);
 			buttons[0]->Bind(wxEVT_BUTTON, method[0], this);
 			buttons[1]->Bind(wxEVT_BUTTON, method[1], this);
 		}
@@ -124,11 +126,11 @@ namespace gui{
 				buttons[i]->Bind(wxEVT_BUTTON, method[i], this);
 			}
 		}
-		main_sizer->Add(button_sizer, 0, wxEXPAND | wxALL, 10);
+		main_sizer->Add(button_sizer, 0, wxEXPAND | wxLEFT | wxRIGHT, 50);
 	}
 
 	/** ***************************************** to Panel Admin *****************************************
-	 * @brief : When call switch to the Panel Admin.
+	 * @brief : When call, switch to the Panel Admin.
 	 * 
 	 */
 	void Panel::toPanelAdmin() {
@@ -143,7 +145,7 @@ namespace gui{
 	}
 
 	/** ***************************************** to Panel Connection *****************************************
-	 * @brief : When call switch to the Panel Connection after a confirmation from the User.
+	 * @brief : When call, switch to the Panel Connection after a confirmation from the User.
 	 * 
 	 */
 	void Panel::toPanelConnection()	{

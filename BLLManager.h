@@ -48,7 +48,7 @@ namespace bll {
 	 * @param entry_end : std::string& => end hour of the entry in format HH:MM
 	 * @return : boolean => true if the creation is a succes
 	 */
-	bool createNewEntry(const int employee_id, const std::string& date, const std::string& start_hour, const std::string& end_hour);
+	bool createNewEntry(const int employee_id, const std::string& entry_date, const std::string& entry_start, const std::string& entry_end);
 
 	/** ***************************************** TO DO *****************************************
 	 * @brief : Create a new employee inside the DB with the given parameters, all are required.

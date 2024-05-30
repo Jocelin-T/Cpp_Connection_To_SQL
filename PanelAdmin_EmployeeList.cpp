@@ -188,6 +188,8 @@ void PanelAdminEmployeeList::UpdatePanelHours(){
 	// Pointer of a new Salary object
 	bll::Salary* pSalary_details = new bll::Salary(selected_employee_id, selected_date.ToStdString());
 
+
+
 	// GUI
 	wxStaticText* pSalary_text = new wxStaticText(m_pPanel_hours, wxID_ANY,
 		wxString::Format("Employee: %d - %s %s\n"

@@ -55,7 +55,7 @@ namespace gui {
 		 *
 		 * @param box_sizer : wxBoxSizer* => box wizer where this will be display
 		 * @param label : wxString& => label of the text control
-		 * @param default_value :	wxString& => value of the text control, empty by default
+		 * @param default_value : wxString& => value of the text control, empty by default
 		 * @param style : long => 0 by default
 		 * @return  : wxTextCtrl* => a label with is text control
 		 */
@@ -68,14 +68,14 @@ namespace gui {
 			std::vector<wxButton*>& buttons,
 			const std::vector<wxString>& labels);
 
-		/** ***************************************** Footer Buttons *****************************************
+		/** ***************************************** Buttons Footer *****************************************
 		 * @brief : Construct and insert a sizer with the number of choosed buttons and display them evenly.
 		 *
 		 * @param main_sizer : wxBoxSizer* => where this sizer gonna be insert
 		 * @param buttons : std::vector<wxButton*>& => vector holding all buttons
-		 * @param labels : std::vector<wxString>& => vector holding all label of the buttons
-		 * @param method : std::vector<wxObjectEventFunction> => vector holding all methods
-		 *				"wxCommandEventHandler(Class::method)"
+		 * @param labels : std::vector<wxString>& => vector holding all labels of the buttons
+		 * @param method : std::vector<wxObjectEventFunction> => vector holding all methods,
+		 *	 required to pass: wxCommandEventHandler(Class::method)
 		 */
 		void addFooterButtons(wxBoxSizer* main_sizer, 
 			std::vector<wxButton*>& buttons,
@@ -83,13 +83,13 @@ namespace gui {
 			std::vector<wxObjectEventFunction> method);
 
 		/** ***************************************** to Panel Admin *****************************************
-		 * @brief : When call switch to the Panel Admin.
+		 * @brief : When call, switch to the Panel Admin.
 		 *
 		 */
 		void toPanelAdmin();
 
 		/** ***************************************** to Panel Connection *****************************************
-		 * @brief : When call switch to the Panel Connection after a confirmation from the User.
+		 * @brief : When call, switch to the Panel Connection after a confirmation from the User.
 		 *
 		 */
 		void toPanelConnection();

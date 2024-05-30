@@ -8,6 +8,7 @@
 #include "BLLManager.h"
 #include "Entry.h"
 #include "Employee.h"
+#include "Salary.h"
 
 namespace bll {
 	/** ***************************************** Complet entry with mySQL *****************************************
