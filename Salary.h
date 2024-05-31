@@ -24,14 +24,8 @@ namespace bll {
 			const std::string& entry_date, 
 			const int salary_per_hour = 38); // Default salary per hour
 
-		std::vector<Salary> getSalaries(
-			const int employee_id,
-			const std::string& entry_date,
-			const int period,
-			const int salary_per_hour = 38);
-
 		// Destructor
-		~Salary();
+		//~Salary();
 
 	private:
 		// Members
@@ -41,19 +35,6 @@ namespace bll {
 		// Objects Ptr
 		const Entry* m_pEntry_details;
 		const Employee* m_pEmployee_details;
-
-		/** ***************************************** Creation of a new daily salary *****************************************
-		 * @brief : Create a salary for the given employee id and date with
-		 *	a pointer for the Entry, a pointer for the Employee and the wages according to the Entry found.
-		 *
-		 * @param employee_id : int => ID of the employee
-		 * @param entry_date : std::string => Date of the entry
-		 */
-		void createDailySalary(const int employee_id, const std::string& entry_date);
-
-		//void createWeeklySalary(const int employee_id, const std::string& entry_date);
-	
-		//void createMonthlySalary(const int employee_id, const std::string& entry_date);
 
 		/** ***************************************** Calculate Wages *****************************************
 		 * @brief : Calculate the wages with working_hours(only) and salary per hour.
@@ -65,6 +46,22 @@ namespace bll {
 		int calculateWages(const int hours, const int salary_per_hour);
 
 	public:
+		/** ***************************************** Creation of a new daily salary *****************************************
+		 * @brief : Create a salary for the given employee id and date with
+		 *	a pointer for the Entry, a pointer for the Employee and the wages according to the Entry found.
+		 *
+		 * @param employee_id : int => ID of the employee
+		 * @param entry_date : std::string => Date of the entry
+		 */
+		void createDailySalary(const int employee_id, const std::string& entry_date);
+
+
+		//Salary createWeeklySalary(const int employee_id, const std::string& entry_date);
+
+	
+		//Salary createMonthlySalary(const int employee_id, const std::string& entry_date);
+
+
 		// Getters
 		int getEmployeeId() const {
 			return m_pEmployee_details != nullptr ? m_pEmployee_details->getEmployeeId() : -1;

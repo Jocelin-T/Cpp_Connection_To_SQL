@@ -33,7 +33,8 @@ namespace gui {
 		};// at least 12 characters, including at least one uppercase letter,
 		// one lowercase letter, one number, and one special character
 
-		wxFrame* m_pMain_frame; // Pointer to the main frame
+		// Pointer to the main frame
+		wxFrame* m_pMain_frame;
 
 		// Vector for the footer buttons
 		std::vector<wxButton*> vector_buttons_footer = {};

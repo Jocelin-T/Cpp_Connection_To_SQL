@@ -6,31 +6,13 @@
  * @date   7 May 2024
  *********************************************************************/
 #include "Salary.h"
-
+#include <wx/wx.h>
 
 namespace bll {
 	Salary::Salary(const int employee_id, const std::string& entry_date, const int salary_per_hour)
 		: m_salary_per_hour{ salary_per_hour }
 	{
 		createDailySalary(employee_id, entry_date);
-	}
-
-	std::vector<Salary> Salary::getSalaries(const int employee_id, const std::string& entry_date, const int period, const int salary_per_hour){
-		std::vector<Salary> list_salaries;
-		switch (period){
-		case 1: // Daily
-
-			break;
-		case 2: // Weekly
-
-			break;
-		case 3: // Yearly
-
-			break;
-		default:
-			break;
-		}
-		return std::vector<Salary>();
 	}
 
 	/** ***************************************** Creation of a new daily salary *****************************************
@@ -41,14 +23,13 @@ namespace bll {
 	 * @param entry_date : std::string => Date of the entry
 	 */
 	void Salary::createDailySalary(const int employee_id, const std::string& entry_date){
-		// Pointer of the Entry object
-		m_pEntry_details = new Entry(employee_id, entry_date);
+			// New Entry object
+			m_pEntry_details = new Entry(employee_id, entry_date);
+			// New Employee object
+			m_pEmployee_details = new Employee(employee_id);
 
-		// Pointer of the Employee object
-		m_pEmployee_details = new Employee(employee_id);
-
-		// Wages according to the Entry choosed
-		m_wages = calculateWages(getWorkingHours(), m_salary_per_hour);
+			// Wages according to the Entry choosed
+			m_wages = calculateWages(getWorkingHours(), m_salary_per_hour);
 	}
 
 	/** ***************************************** Calculate Wages *****************************************
@@ -64,14 +45,14 @@ namespace bll {
 
 
 	// Destructor
-	Salary::~Salary(){
-		if (m_pEntry_details) {
-			delete m_pEntry_details;
-			m_pEntry_details = nullptr;
-		}
-		if (m_pEmployee_details) {
-			delete m_pEmployee_details;
-			m_pEmployee_details = nullptr;
-		}
-	}
+	//Salary::~Salary(){
+	//	if (m_pEntry_details) {
+	//		delete m_pEntry_details;
+	//		m_pEntry_details = nullptr;
+	//	}
+	//	if (m_pEmployee_details) {
+	//		delete m_pEmployee_details;
+	//		m_pEmployee_details = nullptr;
+	//	}
+	//}
 } // namespace bll

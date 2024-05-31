@@ -114,6 +114,65 @@ namespace bll {
 		return vector_employees;
 	}
 
+	/** ***************************************** TO DO *****************************************
+	 * @brief : .
+	 * 
+	 * @param employee_id :
+	 * @param entry_date :
+	 * @param period :
+	 * @param salary_per_hour :
+	 * @return  :
+	 */
+	std::vector<Salary> getSalaries(const int employee_id, const std::string& entry_date, const int period, const int salary_per_hour) {
+		std::vector<Salary> list_salaries;
+		switch (period) {
+		case 0: // Daily
+			list_salaries.emplace_back(Salary(employee_id, entry_date, salary_per_hour));
+			break;
+		case 1: // Weekly
+			// Calculate the start and end dates of the week
+			for (int i = 0; i < 7; ++i) {
+				// Adjust entry_date to get each day of the week
+				std::string day_date = getAdjustedDate(entry_date, i);
+				list_salaries.emplace_back(Salary(employee_id, day_date, salary_per_hour));
+			}
+			break;
+		case 2: // Monthly
+			// Calculate the start and end dates of the month
+			for (int i = 0; i < 30; ++i) {
+				// Adjust entry_date to get each day of the month
+				std::string day_date = getAdjustedDate(entry_date, i);
+				list_salaries.emplace_back(Salary(employee_id, day_date, salary_per_hour));
+			}
+			break;
+		default:
+			break;
+		}
+		return list_salaries;
+	}
+
+
+	std::string getAdjustedDate(const std::string& base_date, int days_offset) {
+		// Parse base_date into a std::tm structure
+		std::tm tm = {};
+		std::istringstream ss(base_date);
+		ss >> std::get_time(&tm, "%Y-%m-%d");
+
+		// Add days_offset to the date
+		std::chrono::system_clock::time_point tp = std::chrono::system_clock::from_time_t(std::mktime(&tm));
+		tp += std::chrono::hours(days_offset * 24);
+
+		// Convert back to std::tm
+		std::time_t time = std::chrono::system_clock::to_time_t(tp);
+		std::tm* new_tm = std::localtime(&time);
+
+		// Format the new date as a string
+		char buffer[11];
+		std::strftime(buffer, 11, "%Y-%m-%d", new_tm);
+
+		return std::string(buffer);
+	}
+
 	/** ***************************************** Admin connection *****************************************
 	 * @brief : Check if the given parameters are egal to the admin data in the DB.
 	 *

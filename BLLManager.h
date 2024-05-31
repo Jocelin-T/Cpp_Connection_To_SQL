@@ -10,8 +10,11 @@
 #include <vector>
 #include <algorithm>
 #include <cctype>
+#include <chrono>
+#include <ctime>
 
 #include "SqlQuery.h"
+#include "Salary.h"
 
 // Forward declaration
 class Entry;
@@ -67,6 +70,12 @@ namespace bll {
 	* @return : std::vector<Employee> => a vector of Employee objects
 	*/
 	std::vector<Employee> getVectorWithEmployees();
+
+	
+	std::vector<Salary> getSalaries(const int employee_id, const std::string& entry_date, const int period, const int salary_per_hour);
+
+
+	std::string getAdjustedDate(const std::string& base_date, int days_offset);
 
 	/** ***************************************** Admin connection *****************************************
 	 * @brief : Check if the given parameters are egal to the admin data in the DB.

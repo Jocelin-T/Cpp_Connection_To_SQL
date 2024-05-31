@@ -18,7 +18,7 @@ PanelAdminEmployeeList::PanelAdminEmployeeList(wxWindow* pParent, wxFrame* pMain
 	InitializeComponents();
 	BindEventHandlers();
 	PopulateEmployees();
-	UpdatePanelHours();
+	UpdatePanelSalaries();
 }
 
 /** ####################################### GUI #####################################
@@ -47,17 +47,31 @@ void PanelAdminEmployeeList::InitializeComponents(){
 	pMain_sizer->Add(pLabel_date_selection, 0, wxALIGN_CENTER_HORIZONTAL | wxTOP, 10);
 	m_pDate = new wxTextCtrl(this, wxID_ANY, getCurrentDate(), wxDefaultPosition, wxSize(200, -1));
 	pMain_sizer->Add(m_pDate, 0, wxALIGN_CENTER_HORIZONTAL | wxBOTTOM, 5);
-
-
-	// Panel with the number of hours of the selected employee
-	m_pPanel_hours = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(600, 200));
-	m_pPanel_hours->SetBackgroundColour(*wxLIGHT_GREY);
-	m_pHours_sizer = new wxBoxSizer(wxVERTICAL);
-
 	
-	// Set the sizer for m_pPanel_hours
-	m_pPanel_hours->SetSizer(m_pHours_sizer);
-	pMain_sizer->Add(m_pPanel_hours, 1, wxEXPAND | wxALL, 20);
+
+	// Panel and Sizer holding all the Employee data, hours and wages
+	m_pSalary_panel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(600, 350));
+	m_pSalary_panel->SetBackgroundColour(*wxLIGHT_GREY);
+	m_pContent_sizer = new wxBoxSizer(wxVERTICAL);
+
+	// Employee data sizer (top)
+	m_pEmployee_sizer = new wxBoxSizer(wxVERTICAL);
+	m_pContent_sizer->Add(m_pEmployee_sizer, 0, wxALIGN_CENTER_HORIZONTAL | wxEXPAND | wxBOTTOM, 5);
+
+	// Scrolled window for the number of hours of the selected employee
+	m_pScrolled_window = new wxScrolledWindow(m_pSalary_panel, wxID_ANY, wxDefaultPosition, wxSize(600, 200));
+	m_pScrolled_window->SetScrollRate(5, 5);
+	m_pHours_sizer = new wxBoxSizer(wxVERTICAL);
+	m_pScrolled_window->SetSizer(m_pHours_sizer);
+	m_pContent_sizer->Add(m_pScrolled_window, 1, wxEXPAND | wxLEFT | wxRIGHT, 20);
+
+	// Total wages sizer (bottom)
+	m_pTotal_wages_sizer = new wxBoxSizer(wxVERTICAL);
+	m_pContent_sizer->Add(m_pTotal_wages_sizer, 0, wxALIGN_CENTER_HORIZONTAL | wxEXPAND | wxTOP, 5);
+	m_pSalary_panel->SetSizer(m_pContent_sizer);
+
+	pMain_sizer->Add(m_pSalary_panel, 0, wxALIGN_CENTER_HORIZONTAL | wxBOTTOM, 5);
+
 
 	// Add a flexible spacer to push the buttons to the bottom
 	pMain_sizer->AddStretchSpacer(1);
@@ -101,15 +115,15 @@ void PanelAdminEmployeeList::onBackButtonClicked(wxCommandEvent& evt){
 }
 
 void PanelAdminEmployeeList::onEmployeeChoiceChanged(wxCommandEvent& evt){
-	UpdatePanelHours();
+	UpdatePanelSalaries();
 }
 
 void PanelAdminEmployeeList::onHoursSelectionChanged(wxCommandEvent& evt){
-	UpdatePanelHours();
+	UpdatePanelSalaries();
 }
 
 void PanelAdminEmployeeList::onDateChanged(wxCommandEvent& evt){
-	UpdatePanelHours();
+	UpdatePanelSalaries();
 }
 
 /** ####################################### Utilities ##################################### */
@@ -157,11 +171,13 @@ void PanelAdminEmployeeList::PopulateEmployees() {
  * @brief : Update the displayed panel of the informations from the selected employee.
  * 
  */
-void PanelAdminEmployeeList::UpdatePanelHours(){
-	// Clear existing content in m_pPanel_hours
-	if (m_pPanel_hours) {
-		m_pPanel_hours->DestroyChildren();
+void PanelAdminEmployeeList::UpdatePanelSalaries(){
+	// Clear existing content in m_pScrolled_window
+	if (m_pScrolled_window) {
+		m_pScrolled_window->DestroyChildren();
 		m_pHours_sizer->Clear(true);  // Clear the sizer contents as well
+		m_pEmployee_sizer->Clear(true);
+		m_pTotal_wages_sizer->Clear(true);
 	}
 
 	// Add new content based on the current selections
@@ -169,59 +185,82 @@ void PanelAdminEmployeeList::UpdatePanelHours(){
 	int selected_employee_id = getChoiceEmployeeId();
 	wxString selected_period = m_pRadio_choices->GetStringSelection();
 	wxString selected_date = m_pDate->GetValue();
+	
+	//m_pSalaryPerHour = pAddLabelAndTextControl(m_pHours_sizer, "Salary per hour", "38");
+	//// Convert text 
+	//long selected_salary;
+	//wxString str_salary = m_pSalaryPerHour->GetValue();
+	//if (str_salary.ToLong(&selected_salary)) {
+	//	int salary = static_cast<int>(selected_salary);
+	//	wxLogMessage("Selected Salary: %d", salary);
+	//}
+	//else {
+	//	wxLogError("The input value is not a valid number.");
+	//}
 
 	// Check if the given date is in the correct format
 	if (!isValidDate(selected_date.ToStdString())) {
-		wxStaticText* invalid_date = new wxStaticText(m_pPanel_hours, wxID_ANY, 
+		wxStaticText* invalid_date = new wxStaticText(m_pScrolled_window, wxID_ANY,
 			"Invalid date format. Please enter the date as YYYY-MM-DD.", wxDefaultPosition, wxDefaultSize, 0);
 		m_pHours_sizer->Add(invalid_date, 0, wxALL | wxEXPAND, 5);
 		return;  // Exit if date format is incorrect
 	}
 
-	// Display the updated information
-	wxStaticText* pText_employee = new wxStaticText(m_pPanel_hours, wxID_ANY,
-		"Employee: " + selected_employee +
-		" | Period: " + selected_period +
-		" | Date: " + selected_date, wxDefaultPosition, wxDefaultSize, 0);
-	m_pHours_sizer->Add(pText_employee, 0, wxALL | wxEXPAND, 5);
+	list_salaries = bll::getSalaries(
+		selected_employee_id,
+		selected_date.ToStdString(),
+		m_pRadio_choices->GetSelection(),
+		38);
 
-	// Pointer of a new Salary object
-	bll::Salary* pSalary_details = new bll::Salary(selected_employee_id, selected_date.ToStdString());
+	updateDisplayedEmployeeData();
+	updateDisplayedSalaries();
+	updateDisplayedTotalWages();
 
-
-
-	// GUI
-	wxStaticText* pSalary_text = new wxStaticText(m_pPanel_hours, wxID_ANY,
-		wxString::Format("Employee: %d - %s %s\n"
-			"Entry N° %d Date: %s\n"
-			"From %s to %s : %d Hours\n"
-			"Wages: %d CHF (%d CHF/Hour)",
-			pSalary_details->getEmployeeId(),
-			pSalary_details->getEmployeeLastName(),
-			pSalary_details->getEmployeeFirstName(),
-
-			pSalary_details->getIdEntry(),
-			pSalary_details->getEntryDate(),
-
-			pSalary_details->getEntryStart(),
-			pSalary_details->getEntryEnd(),
-			pSalary_details->getWorkingHours(),
-
-			pSalary_details->getWages(),
-			pSalary_details->getSalaryPerHour()
-		));
-
-	if (pSalary_details) {
-		delete pSalary_details;
-		pSalary_details = nullptr;
-	}
-
-	m_pHours_sizer->Add(pSalary_text, 0, wxALL | wxEXPAND, 5);
-
-	m_pPanel_hours->SetSizer(m_pHours_sizer);  // Ensure the panel has its sizer set
-	m_pPanel_hours->Layout();  // Re-layout the panel
+	m_pSalary_panel->Layout();  // Re-layout the panel
 }
 
+/** ***************************************** Employee data *****************************************
+ * @brief : Dynamic Display of the Employee data from the selected employee.
+ */
+void PanelAdminEmployeeList::updateDisplayedEmployeeData(){
+	wxStaticText* pEmployee_data_text = new wxStaticText(m_pSalary_panel, wxID_ANY,
+		wxString::Format("Employee: %d - %s %s",
+			list_salaries[0].getEmployeeId(),
+			list_salaries[0].getEmployeeLastName(),
+			list_salaries[0].getEmployeeFirstName()
+		), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER);
+	m_pEmployee_sizer->Add(pEmployee_data_text, 0, wxALL | wxALIGN_CENTER, 5);
+}
+
+/** ***************************************** Hours *****************************************
+ * @brief : Dynamic Display of the Hours from the selected employee.
+ */
+void PanelAdminEmployeeList::updateDisplayedSalaries(){
+	for (const bll::Salary& salary : list_salaries) {
+		wxStaticText* pSalary_text = new wxStaticText(m_pScrolled_window, wxID_ANY,
+			wxString::Format(
+				"------------------- %s -------------------\n"
+				"Entry N° %d\n"
+				"From %s to %s : %d Hours\n"
+				"Wages: %d CHF (%d CHF/Hour)\n",
+				salary.getEntryDate(),
+				salary.getIdEntry(),
+				salary.getEntryStart(),
+				salary.getEntryEnd(),
+				salary.getWorkingHours(),
+				salary.getWages(),
+				salary.getSalaryPerHour()
+			));
+		m_pHours_sizer->Add(pSalary_text, 0, wxALL | wxEXPAND, 5);
+	}
+}
+
+/** ***************************************** Total wages *****************************************
+ * @brief : Dynamic Display of the Total Wages from the selected employee.
+ */
+void PanelAdminEmployeeList::updateDisplayedTotalWages(){
+	// TO DO make the calcul of all Salary wages togeter
+}
 
 
 /** ####################################### Getter ##################################### */
