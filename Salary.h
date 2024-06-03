@@ -24,8 +24,8 @@ namespace bll {
 			const std::string& entry_date, 
 			const int salary_per_hour = 38); // Default salary per hour
 
-		// Destructor
-		//~Salary();
+		// Manual Destructor
+		 void destroySalary();
 
 	private:
 		// Members
@@ -56,12 +56,6 @@ namespace bll {
 		void createDailySalary(const int employee_id, const std::string& entry_date);
 
 
-		//Salary createWeeklySalary(const int employee_id, const std::string& entry_date);
-
-	
-		//Salary createMonthlySalary(const int employee_id, const std::string& entry_date);
-
-
 		// Getters
 		int getEmployeeId() const {
 			return m_pEmployee_details != nullptr ? m_pEmployee_details->getEmployeeId() : -1;
@@ -72,7 +66,7 @@ namespace bll {
 		std::string getEmployeeFirstName() const {
 			return m_pEmployee_details != nullptr ? m_pEmployee_details->getFirstName() : "";
 		}
-		int getIdEntry() const {
+		int getEntryId() const {
 			return m_pEntry_details != nullptr ? m_pEntry_details->getEntryId() : -1;
 		}
 		std::string getEntryDate() const {
@@ -87,12 +81,12 @@ namespace bll {
 		int getWorkingHours() const {
 			return m_pEntry_details != nullptr ? m_pEntry_details->getWorkingHours() : 0;
 		}
-		int getSalaryPerHour() const { return m_salary_per_hour; };
-		int getWages() const { return m_wages; };
+		int getSalaryPerHour() const { return m_salary_per_hour; }
+		int getWages() const { return m_wages; }
 
 		// Setters
-		void setSalaryPerHour(int salary_per_hour) { m_salary_per_hour = salary_per_hour; };
-		void setWages(int wages) { m_wages = wages; };
+		void setSalaryPerHour(int salary_per_hour) { m_salary_per_hour = salary_per_hour; }
+		void setWages(int wages) { m_wages = wages; }
 
 	};
 

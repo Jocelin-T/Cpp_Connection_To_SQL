@@ -216,6 +216,9 @@ void PanelAdminEmployeeList::UpdatePanelSalaries(){
 	updateDisplayedSalaries();
 	updateDisplayedTotalWages();
 
+	// Manual Destroy for avoiding memory leak
+	bll::destroySalaries(list_salaries);
+
 	m_pSalary_panel->Layout();  // Re-layout the panel
 }
 
@@ -244,7 +247,7 @@ void PanelAdminEmployeeList::updateDisplayedSalaries(){
 				"From %s to %s : %d Hours\n"
 				"Wages: %d CHF (%d CHF/Hour)\n",
 				salary.getEntryDate(),
-				salary.getIdEntry(),
+				salary.getEntryId(),
 				salary.getEntryStart(),
 				salary.getEntryEnd(),
 				salary.getWorkingHours(),
@@ -259,7 +262,11 @@ void PanelAdminEmployeeList::updateDisplayedSalaries(){
  * @brief : Dynamic Display of the Total Wages from the selected employee.
  */
 void PanelAdminEmployeeList::updateDisplayedTotalWages(){
-	// TO DO make the calcul of all Salary wages togeter
+	wxStaticText* pTotal_wages = new wxStaticText(m_pSalary_panel, wxID_ANY,
+		wxString::Format("Total: %d CHF",
+			bll::getTotalWages(list_salaries)
+		));
+	m_pTotal_wages_sizer->Add(pTotal_wages, 0, wxALL | wxALIGN_RIGHT, 5);
 }
 
 

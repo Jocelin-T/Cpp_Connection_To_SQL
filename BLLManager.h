@@ -71,10 +71,39 @@ namespace bll {
 	*/
 	std::vector<Employee> getVectorWithEmployees();
 
-	
+	/** ***************************************** Get Salaries *****************************************
+	 * @brief : Crate a vector with all Salary, depending the period choosed.
+	 *
+	 * @param employee_id : int => ID of the employee
+	 * @param entry_date : std::string& => first date for weeks and month
+	 * @param period : int => period choosed
+	 * @param salary_per_hour : int => salary per hour
+	 * @return  : std::vector<Salary>
+	 */
 	std::vector<Salary> getSalaries(const int employee_id, const std::string& entry_date, const int period, const int salary_per_hour);
 
+	/** ***************************************** Manual Destroyer *****************************************
+	 * @brief : NEED to be call when done with getSalary() for avoiding memory leak.
+	 *
+	 * @param vector_salaries : std::vector<Salary>& => vector to clear
+	 */
+	void destroySalaries(std::vector<Salary>& vector_salaries);
 
+	/** ***************************************** Get total wages *****************************************
+	 * @brief : Calculate the total wages from all Salary.
+	 *
+	 * @param vector_salaries : std::vector<Salary>& => vector holding salaries
+	 * @return  : int
+	 */
+	int getTotalWages(const std::vector<Salary>& vector_salaries);
+
+	/** ***************************************** Adjust the date *****************************************
+	 * @brief : Adjust the date depending the month.
+	 *
+	 * @param base_date : std::string& => the first date
+	 * @param days_offset : int => the current iteration
+	 * @return  : std::string => the date in YYYY-MM_DD
+	 */
 	std::string getAdjustedDate(const std::string& base_date, int days_offset);
 
 	/** ***************************************** Admin connection *****************************************

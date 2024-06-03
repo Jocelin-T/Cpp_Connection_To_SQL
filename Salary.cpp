@@ -35,7 +35,7 @@ namespace bll {
 	/** ***************************************** Calculate Wages *****************************************
 	 * @brief : Calculate the wages with working_hours(only) and salary per hour.
 	 *
-	 * @param working_hours : int => number of working_hours
+	 * @param working_hours : int => number of working hours
 	 * @param salary_per_hour : int => salary per hour
 	 * @return  : int => wages
 	 */
@@ -44,15 +44,15 @@ namespace bll {
 	}
 
 
-	// Destructor
-	//Salary::~Salary(){
-	//	if (m_pEntry_details) {
-	//		delete m_pEntry_details;
-	//		m_pEntry_details = nullptr;
-	//	}
-	//	if (m_pEmployee_details) {
-	//		delete m_pEmployee_details;
-	//		m_pEmployee_details = nullptr;
-	//	}
-	//}
+	// Manual Destructor
+	void Salary::destroySalary(){
+		if (m_pEntry_details) {
+			delete m_pEntry_details;
+			m_pEntry_details = nullptr;
+		}
+		if (m_pEmployee_details) {
+			delete m_pEmployee_details;
+			m_pEmployee_details = nullptr;
+		}
+	}
 } // namespace bll

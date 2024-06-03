@@ -32,8 +32,8 @@ namespace gui {
         // Panel and Sizer holding all the Employee data, hours and wages
         wxPanel* m_pSalary_panel;
         wxBoxSizer* m_pContent_sizer;
-        wxScrolledWindow* m_pScrolled_window;
         wxBoxSizer* m_pEmployee_sizer;
+        wxScrolledWindow* m_pScrolled_window;
         wxBoxSizer* m_pHours_sizer;
         wxBoxSizer* m_pTotal_wages_sizer;
 
