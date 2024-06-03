@@ -114,6 +114,101 @@ namespace bll {
 		return vector_employees;
 	}
 
+	/** ***************************************** Get Salaries *****************************************
+	 * @brief : Crate a vector with all Salary, depending the period choosed. NEED to destroy the vector after use.
+	 * 
+	 * @param employee_id : int => ID of the employee
+	 * @param entry_date : std::string& => first date for weeks and month
+	 * @param period : int => period choosed
+	 * @param salary_per_hour : int => salary per hour
+	 * @return  : std::vector<Salary>
+	 */
+	std::vector<Salary> getSalaries(const int employee_id, const std::string& entry_date, const int period, const int salary_per_hour) {
+		std::vector<Salary> list_salaries;
+		switch (period) {
+		case 0: // Daily
+			list_salaries.emplace_back(Salary(employee_id, entry_date, salary_per_hour));
+			break;
+		case 1: // Weekly
+			// Calculate the start and end dates of the week
+			for (int i = 0; i < 7; ++i) {
+				// Adjust entry_date to get each day of the week
+				std::string day_date = getAdjustedDate(entry_date, i);
+				list_salaries.emplace_back(Salary(employee_id, day_date, salary_per_hour));
+			}
+			break;
+		case 2: // Monthly
+			// Calculate the start and end dates of the month
+			for (int i = 0; i < 30; ++i) {
+				// Adjust entry_date to get each day of the month
+				std::string day_date = getAdjustedDate(entry_date, i);
+				list_salaries.emplace_back(Salary(employee_id, day_date, salary_per_hour));
+			}
+			break;
+		default:
+			break;
+		}		
+		return list_salaries;
+	}
+
+	/** ***************************************** Manual Destroyer *****************************************
+	 * @brief : NEED to be call when done with getSalary() for avoiding memory leak.
+	 * 
+	 * @param vector_salaries : std::vector<Salary>& => vector to clear
+	 */
+	void destroySalaries(std::vector<Salary>& vector_salaries) {
+		if (!vector_salaries.empty()) {
+			std::reverse(vector_salaries.begin(), vector_salaries.end());
+			for (Salary& salary : vector_salaries) {
+				salary.destroySalary();
+			}
+			vector_salaries.clear();
+		}
+	}
+
+	/** ***************************************** Get total wages *****************************************
+	 * @brief : Calculate the total wages from all Salary.
+	 * 
+	 * @param vector_salaries : std::vector<Salary>& => vector holding salaries
+	 * @return  : int
+	 */
+	int getTotalWages(const std::vector<Salary>& vector_salaries) {
+		int total{ 0 };
+		for (const Salary& salary : vector_salaries) {
+			total += salary.getWages();
+		}
+		return total;
+	}
+
+
+	/** ***************************************** Adjust the date *****************************************
+	 * @brief : Adjust the date depending the month.
+	 * 
+	 * @param base_date : std::string& => the first date
+	 * @param days_offset : int => the current iteration
+	 * @return  : std::string => the date in YYYY-MM_DD
+	 */
+	std::string getAdjustedDate(const std::string& base_date, int days_offset) {
+		// Parse base_date into a std::tm structure
+		std::tm tm = {};
+		std::istringstream ss(base_date);
+		ss >> std::get_time(&tm, "%Y-%m-%d");
+
+		// Add days_offset to the date
+		std::chrono::system_clock::time_point tp = std::chrono::system_clock::from_time_t(std::mktime(&tm));
+		tp += std::chrono::hours(days_offset * 24);
+
+		// Convert back to std::tm
+		std::time_t time = std::chrono::system_clock::to_time_t(tp);
+		std::tm* new_tm = std::localtime(&time);
+
+		// Format the new date as a string
+		char buffer[11];
+		std::strftime(buffer, 11, "%Y-%m-%d", new_tm);
+
+		return std::string(buffer);
+	}
+
 	/** ***************************************** Admin connection *****************************************
 	 * @brief : Check if the given parameters are egal to the admin data in the DB.
 	 *

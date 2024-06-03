@@ -29,17 +29,22 @@ namespace gui {
         wxArrayString m_hours_choices; // Array of Choices
         wxRadioBox* m_pRadio_choices; // Radio of Choices
 
-        // Panel display employee hours
-        wxPanel* m_pPanel_hours;
-        wxPanel* m_pCurrent_panel;
+        // Panel and Sizer holding all the Employee data, hours and wages
+        wxPanel* m_pSalary_panel;
+        wxBoxSizer* m_pContent_sizer;
+        wxBoxSizer* m_pEmployee_sizer;
+        wxScrolledWindow* m_pScrolled_window;
         wxBoxSizer* m_pHours_sizer;
+        wxBoxSizer* m_pTotal_wages_sizer;
 
         // Date selection
         wxTextCtrl* m_pDate;
+        wxTextCtrl* m_pSalaryPerHour;
 
         // Buttons
         wxButton* m_pButton_back;
-        wxButton* m_pButton_submit;
+
+        std::vector<bll::Salary> list_salaries;
 
         /** ***************************************** Date validation [override] *****************************************
         * @brief : Override the method from the base Class, for ignoring the wxMessageBox.
@@ -89,7 +94,22 @@ namespace gui {
          * @brief : Update the displayed panel of the informations from the selected employee.
          *
          */
-        void UpdatePanelHours();
+        void UpdatePanelSalaries();
+
+        /** ***************************************** Employee data *****************************************
+         * @brief : Dynamic Display of the Employee data from the selected employee.
+         */
+        void updateDisplayedEmployeeData();
+
+        /** ***************************************** Hours *****************************************
+         * @brief : Dynamic Display of the Hours from the selected employee.
+         */
+        void updateDisplayedSalaries();
+
+        /** ***************************************** Total wages *****************************************
+         * @brief : Dynamic Display of the Total Wages from the selected employee.
+         */
+        void updateDisplayedTotalWages();
 
     public:
         // Getter
