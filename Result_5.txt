@@ -1,0 +1,209 @@
+Result_5
+
++ Thread 1 Done: 0 Start processing Employee ID: 4
++ Thread 2 Done: 0 Start processing Employee ID: 2
++ Thread 3 Done: 0 Start processing Employee ID: 9
++ Thread 4 Done: 0 Start processing Employee ID: 12
++ Thread 1 Done: 0 Lock
++ Thread 1 Done: 0 Unlock
++ Thread 1 Done: 0 Notify finished processing Employee ID: 4
++ Thread 1 Done: 0 Start processing Employee ID: 5
++ Thread 5 Done: 0 Unique Lock
++ Thread 5 Done: 0 Start calculating wages for Employee ID: 4
++ Thread 5 Done: 0 Finished calculating wages for Employee ID: 4, Total Wages: 0
++ Thread 5 Map Update - Employee ID: 4, Total Wages: 0
++ Thread 3 Done: 0 Lock
+?? Thread 4 Done: 0 Lock
+?? Thread 3 Done: 0 Unlock
++ Thread 3 Done: 0 Notify finished processing Employee ID: 9
++ Thread 4 Done: 0 Unlock
++ Thread 3 Done: 0 Start processing Employee ID: 10
++ Thread 4 Done: 0 Notify finished processing Employee ID: 12
++ Thread 5 Done: 0 Unique Lock
++ Thread 4 Done: 0 Start processing Employee ID: 13
++ Thread 5 Done: 0 Start calculating wages for Employee ID: 9
++ Thread 5 Done: 0 Finished calculating wages for Employee ID: 9, Total Wages: 0
++ Thread 5 Map Update - Employee ID: 9, Total Wages: 0
++ Thread 5 Done: 0 Start calculating wages for Employee ID: 12
++ Thread 5 Done: 0 Finished calculating wages for Employee ID: 12, Total Wages: 380
++ Thread 5 Map Update - Employee ID: 12, Total Wages: 380
++ Thread 2 Done: 0 Lock
++ Thread 2 Done: 0 Unlock
++ Thread 2 Done: 0 Notify finished processing Employee ID: 2
++ Thread 2 Done: 0 Start processing Employee ID: 3
++ Thread 5 Done: 0 Unique Lock
++ Thread 5 Done: 0 Start calculating wages for Employee ID: 2
++ Thread 5 Done: 0 Finished calculating wages for Employee ID: 2, Total Wages: 342
++ Thread 5 Map Update - Employee ID: 2, Total Wages: 342
++ Thread 1 Done: 0 Lock
++ Thread 1 Done: 0 Unlock
++ Thread 1 Done: 0 Notify finished processing Employee ID: 5
++ Thread 5 Done: 0 Unique Lock
++ Thread 5 Done: 0 Start calculating wages for Employee ID: 5
++ Thread 1 Done: 0 Start processing Employee ID: 6
++ Thread 5 Done: 0 Finished calculating wages for Employee ID: 5, Total Wages: 0
+Thread 5 Map Update - Employee ID: 5, Total Wages: 0
+Thread 3 Done: 0 Lock
+Thread 3 Done: 0 Unlock
+Thread 3 Done: 0 Notify finished processing Employee ID: 10
+Thread 3 Done: 0 Start processing Employee ID: 11
+Thread 5 Done: 0 Unique Lock
+Thread 5 Done: 0 Start calculating wages for Employee ID: 10
+Thread 5 Done: 0 Finished calculating wages for Employee ID: 10, Total Wages: 2508
+Thread 5 Map Update - Employee ID: 10, Total Wages: 2508
+Thread 4 Done: 0 Lock
+Thread 4 Done: 0 Unlock
+Thread 4 Done: 0 Notify finished processing Employee ID: 13
+Thread 4 Done: 0 Start processing Employee ID: 14
+Thread 5 Done: 0 Unique Lock
+Thread 5 Done: 0 Start calculating wages for Employee ID: 13
+Thread 2 Done: 0 Lock
+Thread 5 Done: 0 Finished calculating wages for Employee ID: 13, Total Wages: 0
+Thread 5 Map Update - Employee ID: 13, Total Wages: 0
+Thread 2 Done: 0 Unlock
+Thread 2 Done: 0 Notify finished processing Employee ID: 3
+Thread 2 Done: 0 Lock
+Thread 5 Done: 0 Unique Lock
+Thread 5 Done: 0 Start calculating wages for Employee ID: 3
+Thread 5 Done: 0 Finished calculating wages for Employee ID: 3, Total Wages: 608
+Thread 5 Map Update - Employee ID: 3, Total Wages: 608
+Thread 2 Done: 0 Unlock
+Thread 1 Done: 0 Lock
+Thread 1 Done: 0 Unlock
+Thread 1 Done: 0 Notify finished processing Employee ID: 6
+Thread 1 Done: 0 Lock
+Thread 5 Done: 0 Unique Lock
+Thread 5 Done: 0 Start calculating wages for Employee ID: 6
+Thread 5 Done: 0 Finished calculating wages for Employee ID: 6, Total Wages: 0
+Thread 5 Map Update - Employee ID: 6, Total Wages: 0
+Thread 1 Done: 0 Unlock
+Thread 3 Done: 0 Lock
+Thread 3 Done: 0 Unlock
+Thread 3 Done: 0 Notify finished processing Employee ID: 11
+Thread 3 Done: 0 Lock
+Thread 4 Done: 0 Lock
+Thread 5 Done: 0 Unique Lock
+Thread 5 Done: 0 Start calculating wages for Employee ID: 11
+Thread 5 Done: 0 Finished calculating wages for Employee ID: 11, Total Wages: 1824
+Thread 5 Map Update - Employee ID: 11, Total Wages: 1824
+Thread 3 Done: 0 Unlock
+Thread 4 Done: 0 Unlock
+Thread 4 Done: 0 Notify finished processing Employee ID: 14
+Thread 4 Done: 0 Start processing Employee ID: 15
+Thread 5 Done: 0 Unique Lock
+Thread 5 Done: 0 Start calculating wages for Employee ID: 14
+Thread 5 Done: 0 Finished calculating wages for Employee ID: 14, Total Wages: 0
+Thread 5 Map Update - Employee ID: 14, Total Wages: 0
+Thread 4 Done: 0 Lock
+Thread 4 Done: 0 Unlock
+Thread 4 Done: 0 Notify finished processing Employee ID: 15
+Thread 4 Done: 0 Start processing Employee ID: 16
+Thread 5 Done: 0 Unique Lock
+Thread 5 Done: 0 Start calculating wages for Employee ID: 15
+Thread 5 Done: 0 Finished calculating wages for Employee ID: 15, Total Wages: 0
+Thread 5 Map Update - Employee ID: 15, Total Wages: 0
+Thread 4 Done: 0 Lock
+Thread 4 Done: 0 Unlock
+Thread 4 Done: 0 Notify finished processing Employee ID: 16
+Thread 4 Done: 0 Lock
+Thread 5 Done: 0 Unique Lock
+Thread 5 Done: 0 Start calculating wages for Employee ID: 16
+Thread 5 Done: 0 Finished calculating wages for Employee ID: 16, Total Wages: 304
+Thread 5 Map Update - Employee ID: 16, Total Wages: 304
+Thread 4 Done: 1 Unlock
+Thread 5 Done: 1 Unique Lock
+Thread 5 Done: 1 Unique Unlock
+
+T1: 4-5-6
+T2: 2-3
+T3: 9-10-11
+T4: 12-13-14-15-16
+T5: 4-9-12-2-5-10-13-3-6-11-14-15-16
+
+
+Map: 2-3-4-5-6-9-10-11-12-13-14-15-16
+
+To much work for T4, because of remove emp_1(Admin)
+----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+
++ Thread 6 Done: 0 Start processing Employee ID: 2
++ Thread 7 Done: 0 Start processing Employee ID: 4
++ Thread 8 Done: 0 Start processing Employee ID: 9
++ Thread 9 Done: 0 Start processing Employee ID: 12
++ Thread 6 Done: 0 Lock
++ Thread 6 Done: 0 Unlock
++ Thread 6 Done: 0 Notify finished processing Employee ID: 2
+??? Thread 10 Done: 0 Unique Lock
++ Thread 10 Done: 0 Start calculating wages for Employee ID: 2
++ Thread 6 Done: 0 Start processing Employee ID: 3
++ Thread 9 Done: 0 Lock
+??? Thread 10 Done: 0 Finished calculating wages for Employee ID: 2, Total Wages: 0
+??? Thread 7 Done: 0 Lock
++ Thread 10 Map Update - Employee ID: 2, Total Wages: 0
++ Thread 9 Done: 0 Unlock
++ Thread 9 Done: 0 Notify finished processing Employee ID: 12
++ Thread 9 Done: 0 Start processing Employee ID: 13
++ Thread 7 Done: 0 Unlock
+??? Thread 8 Done: 0 Lock
++ Thread 7 Done: 0 Notify finished processing Employee ID: 4
++ Thread 7 Done: 0 Start processing Employee ID: 5
+??? Thread 10 Done: 0 Unique Lock
++ Thread 10 Done: 0 Start calculating wages for Employee ID: 12
++ Thread 10 Done: 0 Finished calculating wages for Employee ID: 12, Total Wages: 0
++ Thread 10 Map Update - Employee ID: 12, Total Wages: 0
++ Thread 10 Done: 0 Start calculating wages for Employee ID: 4
++ Thread 10 Done: 0 Finished calculating wages for Employee ID: 4, Total Wages: 0
++ Thread 10 Map Update - Employee ID: 4, Total Wages: 0
++ Thread 8 Done: 0 Unlock
++ Thread 8 Done: 0 Notify finished processing Employee ID: 9
++ Thread 8 Done: 0 Start processing Employee ID: 10
++ Thread 10 Done: 0 Unique Lock
++ Thread 10 Done: 0 Start calculating wages for Employee ID: 9
++ Thread 10 Done: 0 Finished calculating wages for Employee ID: 9, Total Wages: 0
++ Thread 10 Map Update - Employee ID: 9, Total Wages: 0
++ Thread 7 Done: 0 Lock
++ Thread 7 Done: 0 Unlock
++ Thread 6 Done: 0 Lock
++ Thread 7 Done: 0 Notify finished processing Employee ID: 5
++ Thread 7 Done: 0 Start processing Employee ID: 6
+??? Thread 10 Done: 0 Unique Lock
++ Thread 9 Done: 0 Lock
++ Thread 10 Done: 0 Start calculating wages for Employee ID: 5
++ Thread 10 Done: 0 Finished calculating wages for Employee ID: 5, Total Wages: 0
++ Thread 10 Map Update - Employee ID: 5, Total Wages: 0
++ Thread 9 Done: 0 Unlock
++ Thread 9 Done: 0 Notify finished processing Employee ID: 13
++ Thread 9 Done: 0 Start processing Employee ID: 14
+??? Thread 6 Done: 0 Unlock
++ Thread 6 Done: 0 Notify finished processing Employee ID: 3
++ Thread 6 Done: 0 Lock
+??? Thread 10 Done: 0 Unique Lock
+??? Thread 8 Done: 0 Lock
++ Thread 10 Done: 0 Start calculating wages for Employee ID: 13
++ Thread 10 Done: 0 Finished calculating wages for Employee ID: 13, Total Wages: 0
++ Thread 10 Map Update - Employee ID: 13, Total Wages: 0
++ Thread 10 Done: 0 Start calculating wages for Employee ID: 3
++ Thread 10 Done: 0 Finished calculating wages for Employee ID: 3, Total Wages: 0
++ Thread 10 Map Update - Employee ID: 3, Total Wages: 0
++ Thread 6 Done: 0 Unlock
++ Thread 8 Done: 0 Unlock
++ Thread 8 Done: 0 Notify finished processing Employee ID: 10
++ Thread 8 Done: 0 Start processing Employee ID: 11
++ Thread 10 Done: 0 Unique Lock
++ Thread 10 Done: 0 Start calculating wages for Employee ID: 10
++ Thread 10 Done: 0 Finished calculating wages for Employee ID: 10, Total Wages: 0
++ Thread 10 Map Update - Employee ID: 10, Total Wages: 0
+
+T6: 2-3
+T7: 4-5-6
+T8: 9-10-11
+T9: 12-13-14-???-???
+T10: 2-12-4-9-5-13-3-10
+
+
+Map: 2-3-4-5-???-9-10-???-12-13-???
+
+Program create an exception at T7 when processing emp_6
+Then missing T8 emp_11 and T9 emp_14
+And T9 emp_15 + T9 emp_16 never exist

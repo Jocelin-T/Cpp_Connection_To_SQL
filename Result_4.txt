@@ -1,0 +1,182 @@
+Result_4
+
++ Thread 1 Done: 0 Start processing Employee ID: 2
++ Thread 2 Done: 0 Start processing Employee ID: 4
++ Thread 3 Done: 0 Start processing Employee ID: 9
++ Thread 4 Done: 0 Start processing Employee ID: 12
++ Thread 3 Done: 0 Lock
++ Thread 3 Done: 0 Unlock
++ Thread 3 Done: 0 Finished processing Employee ID: 9
+? Thread 5 Done: 0 Unique Lock
++ Thread 3 Done: 0 Start processing Employee ID: 10
++ Thread 5 Done: 0 Start calculating wages for Employee ID: 9
++ Thread 5 Done: 0 Finished calculating wages for Employee ID: 9, Total Wages: 0
++ Thread 5 Map Update - Employee ID: 9, Total Wages: 0
++ Thread 1 Done: 0 Lock
++ Thread 1 Done: 0 Unlock
++ Thread 1 Done: 0 Finished processing Employee ID: 2
++ Thread 1 Done: 0 Start processing Employee ID: 3
+? Thread 5 Done: 0 Unique Lock
++ Thread 5 Done: 0 Start calculating wages for Employee ID: 2
++ Thread 5 Done: 0 Finished calculating wages for Employee ID: 2, Total Wages: 342
++ Thread 5 Map Update - Employee ID: 2, Total Wages: 342
++ Thread 2 Done: 0 Lock
++ Thread 2 Done: 0 Unlock
++ Thread 2 Done: 0 Finished processing Employee ID: 4
++ Thread 2 Done: 0 Start processing Employee ID: 5
+? Thread 5 Done: 0 Unique Lock
++ Thread 5 Done: 0 Start calculating wages for Employee ID: 4
++ Thread 5 Done: 0 Finished calculating wages for Employee ID: 4, Total Wages: 0
++ Thread 5 Map Update - Employee ID: 4, Total Wages: 0
++ Thread 4 Done: 0 Lock
++ Thread 4 Done: 0 Unlock
++ Thread 4 Done: 0 Finished processing Employee ID: 12
++ Thread 4 Done: 0 Start processing Employee ID: 13
+? Thread 5 Done: 0 Unique Lock
++ Thread 5 Done: 0 Start calculating wages for Employee ID: 12
++ Thread 5 Done: 0 Finished calculating wages for Employee ID: 12, Total Wages: 380
++ Thread 5 Map Update - Employee ID: 12, Total Wages: 380
++ Thread 3 Done: 0 Lock
++ Thread 3 Done: 0 Unlock
++ Thread 3 Done: 0 Finished processing Employee ID: 10
+? Thread 5 Done: 0 Unique Lock
+--- Thread 1 Done: 0 Lock
+--- Thread 4 Done: 0 Lock
++ Thread 3 Done: 0 Start processing Employee ID: 11
+--- Thread 2 Done: 0 Lock
++ Thread 5 Done: 0 Start calculating wages for Employee ID: 10
++ Thread 5 Done: 0 Finished calculating wages for Employee ID: 10, Total Wages: 2508
++ Thread 5 Map Update - Employee ID: 10, Total Wages: 2508
+--- Thread 1 Done: 0 Unlock
++ Thread 1 Done: 0 Finished processing Employee ID: 3
+--- Thread 1 Lock
+--- Thread 2 Done: 0 Unlock
++ Thread 2 Done: 0 Finished processing Employee ID: 5
+--- Thread 4 Done: 0 Unlock
++ Thread 2 Done: 0 Start processing Employee ID: 6
++ Thread 4 Done: 0 Finished processing Employee ID: 13
+? Thread 5 Done: 0 Unique Lock
++ Thread 5 Done: 0 Start calculating wages for Employee ID: 3
++ Thread 4 Done: 0 Start processing Employee ID: 14
++ Thread 5 Done: 0 Finished calculating wages for Employee ID: 3, Total Wages: 608
++ Thread 5 Map Update - Employee ID: 3, Total Wages: 608
++ Thread 5 Done: 0 Start calculating wages for Employee ID: 5
++ Thread 5 Done: 0 Finished calculating wages for Employee ID: 5, Total Wages: 0
++ Thread 5 Map Update - Employee ID: 5, Total Wages: 0
++ Thread 5 Done: 0 Start calculating wages for Employee ID: 13
++ Thread 5 Done: 0 Finished calculating wages for Employee ID: 13, Total Wages: 0
++ Thread 5 Map Update - Employee ID: 13, Total Wages: 0
+--- Thread 1 Unlock and Done
+Thread 5 Done: 1 Unique Lock
+Thread 5 Done: 1 Unique Unlock
+Thread 3 Done: 1 Lock
+Thread 3 Done: 1 Unlock
+Thread 3 Done: 1 Finished processing Employee ID: 11
+Thread 3 Lock
+Thread 3 Unlock and Done
+Thread 2 Done: 1 Lock
+Thread 2 Done: 1 Unlock
+Thread 2 Done: 1 Finished processing Employee ID: 6
+Thread 2 Lock
+Thread 2 Unlock and Done
+Thread 4 Done: 1 Lock
+Thread 4 Done: 1 Unlock
+Thread 4 Done: 1 Finished processing Employee ID: 14
+Thread 4 Done: 1 Start processing Employee ID: 15
+Thread 4 Done: 1 Lock
+Thread 4 Done: 1 Unlock
+Thread 4 Done: 1 Finished processing Employee ID: 15
+Thread 4 Done: 1 Start processing Employee ID: 16
+Thread 4 Done: 1 Lock
+Thread 4 Done: 1 Unlock
+Thread 4 Done: 1 Finished processing Employee ID: 16
+Thread 4 Lock
+Thread 4 Unlock and Done
+------------------------------------------------------------------------------------------
+Thread 11040245648586343319 Done: 0 Start processing Employee ID: 4
+Thread 15723609073239237814 Done: 0 Start processing Employee ID: 9
+Thread 17418119609760217766 Done: 0 Start processing Employee ID: 12
+Thread 13024967597232868617 Done: 0 Unique Lock
+Thread 13024967597232868617 Done: 0 Start calculating wages for Employee ID: 11
+Thread 5926947697211046799 Done: 0 Start processing Employee ID: 2
+Thread 13024967597232868617 Done: 0 Finished calculating wages for Employee ID: 11, Total Wages: 1824
+Thread 13024967597232868617 Map Update - Employee ID: 11, Total Wages: 1824
+Thread 13024967597232868617 Done: 0 Start calculating wages for Employee ID: 6
+Thread 13024967597232868617 Done: 0 Finished calculating wages for Employee ID: 6, Total Wages: 0
+Thread 13024967597232868617 Map Update - Employee ID: 6, Total Wages: 0
+Thread 13024967597232868617 Done: 0 Start calculating wages for Employee ID: 14
+Thread 13024967597232868617 Done: 0 Finished calculating wages for Employee ID: 14, Total Wages: 0
+Thread 13024967597232868617 Map Update - Employee ID: 14, Total Wages: 0
+Thread 13024967597232868617 Done: 0 Start calculating wages for Employee ID: 15
+Thread 13024967597232868617 Done: 0 Finished calculating wages for Employee ID: 15, Total Wages: 0
+Thread 13024967597232868617 Map Update - Employee ID: 15, Total Wages: 0
+Thread 13024967597232868617 Done: 0 Start calculating wages for Employee ID: 16
+Thread 13024967597232868617 Done: 0 Finished calculating wages for Employee ID: 16, Total Wages: 304
+Thread 13024967597232868617 Map Update - Employee ID: 16, Total Wages: 304
+Thread 11040245648586343319 Done: 0 Lock
+Thread 11040245648586343319 Done: 0 Unlock
+Thread 11040245648586343319 Done: 0 Finished processing Employee ID: 4
+Thread 11040245648586343319 Done: 0 Start processing Employee ID: 5
+Thread 13024967597232868617 Done: 0 Unique Lock
+Thread 13024967597232868617 Done: 0 Start calculating wages for Employee ID: 4
+Thread 15723609073239237814 Done: 0 Lock
+Thread 13024967597232868617 Done: 0 Finished calculating wages for Employee ID: 4, Total Wages: 0
+Thread 13024967597232868617 Map Update - Employee ID: 4, Total Wages: 0
+Thread 15723609073239237814 Done: 0 Unlock
+Thread 15723609073239237814 Done: 0 Finished processing Employee ID: 9
+Thread 15723609073239237814 Done: 0 Start processing Employee ID: 10
+Thread 13024967597232868617 Done: 0 Unique Lock
+Thread 13024967597232868617 Done: 0 Start calculating wages for Employee ID: 9
+Thread 13024967597232868617 Done: 0 Finished calculating wages for Employee ID: 9, Total Wages: 0
+Thread 13024967597232868617 Map Update - Employee ID: 9, Total Wages: 0
+Thread 17418119609760217766 Done: 0 Lock
+Thread 17418119609760217766 Done: 0 Unlock
+Thread 17418119609760217766 Done: 0 Finished processing Employee ID: 12
+Thread 5926947697211046799 Done: 0 Lock
+Thread 13024967597232868617 Done: 0 Unique Lock
+Thread 13024967597232868617 Done: 0 Start calculating wages for Employee ID: 12
+Thread 17418119609760217766 Done: 0 Start processing Employee ID: 13
+Thread 13024967597232868617 Done: 0 Finished calculating wages for Employee ID: 12, Total Wages: 380
+Thread 13024967597232868617 Map Update - Employee ID: 12, Total Wages: 380
+Thread 5926947697211046799 Done: 0 Unlock
+Thread 5926947697211046799 Done: 0 Finished processing Employee ID: 2
+Thread 5926947697211046799 Done: 0 Start processing Employee ID: 3
+Thread 13024967597232868617 Done: 0 Unique Lock
+Thread 13024967597232868617 Done: 0 Start calculating wages for Employee ID: 2
+Thread 13024967597232868617 Done: 0 Finished calculating wages for Employee ID: 2, Total Wages: 342
+Thread 13024967597232868617 Map Update - Employee ID: 2, Total Wages: 342
+Thread 11040245648586343319 Done: 0 Lock
+Thread 11040245648586343319 Done: 0 Unlock
+Thread 11040245648586343319 Done: 0 Finished processing Employee ID: 5
+Thread 15723609073239237814 Done: 0 Lock
+Thread 13024967597232868617 Done: 0 Unique Lock
+Thread 13024967597232868617 Done: 0 Start calculating wages for Employee ID: 5
+Thread 11040245648586343319 Done: 0 Start processing Employee ID: 6
+Thread 13024967597232868617 Done: 0 Finished calculating wages for Employee ID: 5, Total Wages: 0
+Thread 13024967597232868617 Map Update - Employee ID: 5, Total Wages: 0
+Thread 15723609073239237814 Done: 0 Unlock
+Thread 15723609073239237814 Done: 0 Finished processing Employee ID: 10
+Thread 13024967597232868617 Done: 0 Unique Lock
+Thread 15723609073239237814 Done: 0 Start processing Employee ID: 11
+Thread 13024967597232868617 Done: 0 Start calculating wages for Employee ID: 10
+Thread 13024967597232868617 Done: 0 Finished calculating wages for Employee ID: 10, Total Wages: 2508
+Thread 13024967597232868617 Map Update - Employee ID: 10, Total Wages: 2508
+Thread 17418119609760217766 Done: 0 Lock
+Thread 17418119609760217766 Done: 0 Unlock
+Thread 17418119609760217766 Done: 0 Finished processing Employee ID: 13
+Thread 17418119609760217766 Done: 0 Start processing Employee ID: 14
+Thread 13024967597232868617 Done: 0 Unique Lock
+Thread 13024967597232868617 Done: 0 Start calculating wages for Employee ID: 13
+Thread 5926947697211046799 Done: 0 Lock
+Thread 13024967597232868617 Done: 0 Finished calculating wages for Employee ID: 13, Total Wages: 0
+Thread 13024967597232868617 Map Update - Employee ID: 13, Total Wages: 0
+Thread 5926947697211046799 Done: 0 Unlock
+Thread 5926947697211046799 Done: 0 Finished processing Employee ID: 3
+Thread 5926947697211046799 Lock
+Thread 13024967597232868617 Done: 0 Unique Lock
+Thread 13024967597232868617 Done: 0 Start calculating wages for Employee ID: 3
+Thread 13024967597232868617 Done: 0 Finished calculating wages for Employee ID: 3, Total Wages: 608
+Thread 13024967597232868617 Map Update - Employee ID: 3, Total Wages: 608
+Thread 5926947697211046799 Unlock and Done
+Thread 13024967597232868617 Done: 1 Unique Lock
+Thread 13024967597232868617 Done: 1 Unique Unlock

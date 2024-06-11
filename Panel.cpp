@@ -215,6 +215,17 @@ namespace gui{
 		return formattedDate;
 	}
 
+	/** ***************************************** Give the current year *****************************************
+	 * @brief : Get the current year of the system.
+	 *
+	 * @return  : wxString => year in format YYYY
+	 */
+	wxString Panel::getCurrentYear() {
+		wxDateTime now = wxDateTime::Now();
+		wxString formattedYear = now.Format("%Y");
+		return formattedYear;
+	}
+
 	/** ####################################### Check Format Regex ##################################### */
 	/** ***************************************** check Date Format *****************************************
 	 * @brief : Check if the given date is in the format YYYY-MM-DD.
@@ -227,6 +238,20 @@ namespace gui{
 			return true;
 		}
 		wxMessageBox("Date format is incorrect: YYYY-MM-DD", "Incorrect Format", wxOK | wxICON_WARNING);
+		return false;
+	}
+
+	/** ***************************************** check Year Format *****************************************
+	 * @brief : Check if the given year is in the format YYYY.
+	 *
+	 * @param year : std::string& => year
+	 * @return  : boolean
+	 */
+	bool Panel::isValidYear(const std::string& year) {
+		if (std::regex_match(year, M_YEAR_PATTERN)) {
+			return true;
+		}
+		wxMessageBox("Year format is incorrect: YYYY", "Incorrect Format", wxOK | wxICON_WARNING);
 		return false;
 	}
 

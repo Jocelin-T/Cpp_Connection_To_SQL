@@ -139,8 +139,10 @@
     <ClCompile Include="Entry.cpp" />
     <ClCompile Include="ErrorHandling.cpp" />
     <ClCompile Include="MainFrame.cpp" />
+    <ClCompile Include="MultiThreading.cpp" />
     <ClCompile Include="Panel.cpp" />
     <ClCompile Include="PanelAdmin.cpp" />
+    <ClCompile Include="PanelAdmin_AllSalaries.cpp" />
     <ClCompile Include="PanelAdmin_EmployeeList.cpp" />
     <ClCompile Include="PanelAdmin_EmployeeUpdate.cpp" />
     <ClCompile Include="PanelConnection.cpp" />
@@ -158,8 +160,10 @@
     <ClInclude Include="Entry.h" />
     <ClInclude Include="ErrorHandling.h" />
     <ClInclude Include="MainFrame.h" />
+    <ClInclude Include="MultiThreading.h" />
     <ClInclude Include="Panel.h" />
     <ClInclude Include="PanelAdmin.h" />
+    <ClInclude Include="PanelAdmin_AllSalaries.h" />
     <ClInclude Include="PanelAdmin_EmployeeList.h" />
     <ClInclude Include="PanelAdmin_EmployeeUpdate.h" />
     <ClInclude Include="PanelConnection.h" />

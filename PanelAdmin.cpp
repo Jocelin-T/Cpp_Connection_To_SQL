@@ -36,6 +36,9 @@ namespace gui {
 		m_pButton_list_employee = new wxButton(this, wxID_ANY, "Show list of employee", wxDefaultPosition, m_button_size);
 		pOption_sizer->Add(m_pButton_list_employee, 0, wxALIGN_CENTER_HORIZONTAL | wxBOTTOM, 10);
 
+		m_pButton_all_salaries = new wxButton(this, wxID_ANY, "Show all salaries", wxDefaultPosition, m_button_size);
+		pOption_sizer->Add(m_pButton_all_salaries, 0, wxALIGN_CENTER_HORIZONTAL | wxBOTTOM, 10);
+
 		pMain_sizer->Add(pOption_sizer, 0, wxALIGN_CENTER);
 
 		// Add a flexible spacer to push the buttons to the bottom
@@ -67,6 +70,7 @@ namespace gui {
 		m_pButton_add_employee->Bind(wxEVT_BUTTON, &PanelAdmin::onAddEmployeeClicked, this);
 		m_pButton_update_employee->Bind(wxEVT_BUTTON, &PanelAdmin::onUpdateEmployeeClicked, this);
 		m_pButton_list_employee->Bind(wxEVT_BUTTON, &PanelAdmin::onListEmployeeClicked, this);
+		m_pButton_all_salaries->Bind(wxEVT_BUTTON, &PanelAdmin::onAllSalariesClicked, this);
 
 		m_pButton_disconnect->Bind(wxEVT_BUTTON, &PanelAdmin::onDisconnectButtonClicked, this);
 	}
@@ -114,6 +118,23 @@ namespace gui {
 		MainFrame* pMain_frame_dynamic = dynamic_cast<MainFrame*>(m_pMain_frame); // Safe casting to derived class
 		if (pMain_frame_dynamic) {
 			pMain_frame_dynamic->toPanel_Admin_ListEmployee(); // Call the method to switch panels
+		}
+		else {
+			wxMessageBox("Failed to cast MainFrame", "Error", wxOK | wxICON_ERROR);
+		}
+	}
+
+	/** ***************************************** Button All Salaries *****************************************
+	 * @brief : Create the panel for display the list of employee and 
+	 *	display there hours and salaries (toPanel_Admin_AllSalaries).
+	 * 
+	 * @param evt :
+	 */
+	void PanelAdmin::onAllSalariesClicked(wxCommandEvent& evt) {
+		// "dynamic_cast" need to be used, because the method "toPanel_Admin_AllSalaries()" only exist in MainFrame, not in wxFrame
+		MainFrame* pMain_frame_dynamic = dynamic_cast<MainFrame*>(m_pMain_frame); // Safe casting to derived class
+		if (pMain_frame_dynamic) {
+			pMain_frame_dynamic->toPanel_Admin_AllSalaries(); // Call the method to switch panels
 		}
 		else {
 			wxMessageBox("Failed to cast MainFrame", "Error", wxOK | wxICON_ERROR);

@@ -77,6 +77,12 @@ namespace gui {
          */
         void toPanel_Admin_ListEmployee();
 
+        /** ***************************************** Switch to (PanelAdminAllSalaries) *****************************************
+         * @brief : Will change the panel to (PanelAdminAllSalaries).
+         *
+         */
+        void toPanel_Admin_AllSalaries();
+
 
     private:
         wxPanel* m_pCurrent_panel;  // Pointer to keep track of the current panel

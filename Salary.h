@@ -56,6 +56,9 @@ namespace bll {
 		void createDailySalary(const int employee_id, const std::string& entry_date);
 
 
+		void createYearlySalary(const int employee_id, const std::string& date);
+
+
 		// Getters
 		int getEmployeeId() const {
 			return m_pEmployee_details != nullptr ? m_pEmployee_details->getEmployeeId() : -1;

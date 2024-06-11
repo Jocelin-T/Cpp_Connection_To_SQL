@@ -77,13 +77,13 @@ void PanelAdminEmployeeList::InitializeComponents(){
 	pMain_sizer->AddStretchSpacer(1);
 
 	// Buttons at the bottom
-	vector_buttons_footer = { m_pButton_back };
-	vector_labels_footer = { "<< Back" };
-	vector_method_footer = {
+	m_vector_buttons_footer = { m_pButton_back };
+	m_vector_labels_footer = { "<< Back" };
+	m_vector_method_footer = {
 		wxCommandEventHandler(PanelAdminEmployeeList::onBackButtonClicked)
 	};
 
-	addFooterButtons(pMain_sizer, vector_buttons_footer, vector_labels_footer, vector_method_footer);
+	addFooterButtons(pMain_sizer, m_vector_buttons_footer, m_vector_labels_footer, m_vector_method_footer);
 
 
 	// Set the main sizer for the panel to arrange the sub-widgets
@@ -206,7 +206,7 @@ void PanelAdminEmployeeList::UpdatePanelSalaries(){
 		return;  // Exit if date format is incorrect
 	}
 
-	list_salaries = bll::getSalaries(
+	list_salaries = bll::getSalariesOfOneEmployee(
 		selected_employee_id,
 		selected_date.ToStdString(),
 		m_pRadio_choices->GetSelection(),

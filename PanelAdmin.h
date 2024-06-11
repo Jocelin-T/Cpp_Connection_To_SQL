@@ -21,6 +21,7 @@ namespace gui {
 		wxButton* m_pButton_add_employee;
 		wxButton* m_pButton_update_employee;
 		wxButton* m_pButton_list_employee;
+		wxButton* m_pButton_all_salaries;
 
 		wxButton* m_pButton_disconnect;
 		wxButton* m_pButton_placeholder;
@@ -58,6 +59,14 @@ namespace gui {
 		 * @param evt :
 		 */
 		void onListEmployeeClicked(wxCommandEvent& evt);
+
+		/** ***************************************** Button All Salaries *****************************************
+		 * @brief : Create the panel for display the list of employee and
+		 *	display there hours and salaries (toPanel_Admin_AllSalaries).
+		 *
+		 * @param evt :
+		 */
+		void onAllSalariesClicked(wxCommandEvent& evt);
 
 		/** ***************************************** Disconnect Button *****************************************
 		 * @brief : When the button disconnect is press,

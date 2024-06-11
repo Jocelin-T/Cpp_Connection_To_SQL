@@ -23,13 +23,21 @@ namespace bll {
 	 * @param entry_date : std::string => Date of the entry
 	 */
 	void Salary::createDailySalary(const int employee_id, const std::string& entry_date){
-			// New Entry object
-			m_pEntry_details = new Entry(employee_id, entry_date);
-			// New Employee object
-			m_pEmployee_details = new Employee(employee_id);
+		// New Entry object
+		m_pEntry_details = new Entry(employee_id, entry_date);
+		// New Employee object
+		m_pEmployee_details = new Employee(employee_id);
 
-			// Wages according to the Entry choosed
-			m_wages = calculateWages(getWorkingHours(), m_salary_per_hour);
+		// Wages according to the Entry choosed
+		m_wages = calculateWages(getWorkingHours(), m_salary_per_hour);
+	}
+
+
+	void Salary::createYearlySalary(const int employee_id, const std::string& date)	{
+		// New Employee object
+		m_pEmployee_details = new Employee(employee_id);
+
+
 	}
 
 	/** ***************************************** Calculate Wages *****************************************
