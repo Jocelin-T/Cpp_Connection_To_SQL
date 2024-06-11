@@ -14,6 +14,7 @@
 #include "PanelAdmin_EmployeeCreation.h"
 #include "PanelAdmin_EmployeeUpdate.h"
 #include "PanelAdmin_EmployeeList.h"
+#include "PanelAdmin_AllSalaries.h"
 
 namespace gui {
 	MainFrame::MainFrame(const wxString& title) 
@@ -74,6 +75,14 @@ namespace gui {
 	 */
 	void MainFrame::toPanel_Admin_ListEmployee(){
 		SwitchPanel(new PanelAdminEmployeeList(this, this));
+	}
+
+	/** ***************************************** Switch to (PanelAdminAllSalaries) *****************************************
+	 * @brief : Will change the panel to (PanelAdminAllSalaries).
+	 * 
+	 */
+	void MainFrame::toPanel_Admin_AllSalaries() {
+		SwitchPanel(new PanelAdminAllSalaries(this, this));
 	}
 
 

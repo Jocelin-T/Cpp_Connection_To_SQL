@@ -24,6 +24,7 @@ namespace gui {
 
 	protected:
 		const std::regex M_DATE_PATTERN{ R"(^\d{4}-\d{2}-\d{2}$)" }; // YYYY-MM-DD
+		const std::regex M_YEAR_PATTERN{ R"(^\d{4}$)" }; // YYYY
 		const std::regex M_HOUR_PATTERN{ R"(^([01]\d|2[0-3]):([0-5]\d)$)" }; // HH:MM
 		const std::regex M_NAME_PATTERN{ R"(^[A-Za-z\s-]+$)" }; // Alphabetic characters, spaces, and hyphens
 		const std::regex M_EMAIL_PATTERN{ R"(^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$)" };
@@ -37,9 +38,9 @@ namespace gui {
 		wxFrame* m_pMain_frame;
 
 		// Vector for the footer buttons
-		std::vector<wxButton*> vector_buttons_footer = {};
-		std::vector<wxString> vector_labels_footer = {};
-		std::vector<wxObjectEventFunction> vector_method_footer = {};
+		std::vector<wxButton*> m_vector_buttons_footer = {};
+		std::vector<wxString> m_vector_labels_footer = {};
+		std::vector<wxObjectEventFunction> m_vector_method_footer = {};
 
 
 		/** ***************************************** Add title to Panel *****************************************
@@ -112,6 +113,14 @@ namespace gui {
 		 */
 		virtual bool isValidDate(const std::string& date);
 
+		/** ***************************************** check Year Format *****************************************
+		 * @brief : Check if the given year is in the format YYYY.
+		 *
+		 * @param year : std::string& => year
+		 * @return  : boolean
+		 */
+		virtual bool isValidYear(const std::string& year);
+
 		/** ***************************************** check Hour Format *****************************************
 		 * @brief : Check if the given hour is in the format HH:MM.
 		 *
@@ -170,6 +179,13 @@ namespace gui {
 		 * @return  : wxString, date in format YYYY-MM-DD
 		 */
 		wxString getCurrentDate();
+
+		/** ***************************************** Give the current year *****************************************
+		 * @brief : Get the current year of the system.
+		 *
+		 * @return  : wxString => year in format YYYY
+		 */
+		wxString getCurrentYear();
 
 	};
 } // namespace gui

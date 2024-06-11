@@ -10,6 +10,8 @@
 #include "Employee.h"
 #include "Salary.h"
 
+
+
 namespace bll {
 	/** ***************************************** Complet entry with mySQL *****************************************
 	* @brief : Complet an object Entry with the data found in mySQL.
@@ -114,8 +116,9 @@ namespace bll {
 		return vector_employees;
 	}
 
-	/** ***************************************** Get Salaries *****************************************
-	 * @brief : Crate a vector with all Salary, depending the period choosed. NEED to destroy the vector after use.
+	/** ***************************************** Get Salaries of one Employee *****************************************
+	 * @brief : Create a vector with all Salaries of 1 employee, depending the period choosed.
+	 *  NEED to destroy the vector after use.
 	 * 
 	 * @param employee_id : int => ID of the employee
 	 * @param entry_date : std::string& => first date for weeks and month
@@ -123,7 +126,7 @@ namespace bll {
 	 * @param salary_per_hour : int => salary per hour
 	 * @return  : std::vector<Salary>
 	 */
-	std::vector<Salary> getSalaries(const int employee_id, const std::string& entry_date, const int period, const int salary_per_hour) {
+	std::vector<Salary> getSalariesOfOneEmployee(const int employee_id, const std::string& entry_date, const int period, const int salary_per_hour) {
 		std::vector<Salary> list_salaries;
 		switch (period) {
 		case 0: // Daily
@@ -150,6 +153,7 @@ namespace bll {
 		}		
 		return list_salaries;
 	}
+
 
 	/** ***************************************** Manual Destroyer *****************************************
 	 * @brief : NEED to be call when done with getSalary() for avoiding memory leak.
@@ -179,7 +183,6 @@ namespace bll {
 		}
 		return total;
 	}
-
 
 	/** ***************************************** Adjust the date *****************************************
 	 * @brief : Adjust the date depending the month.

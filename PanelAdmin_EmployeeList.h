@@ -29,6 +29,10 @@ namespace gui {
         wxArrayString m_hours_choices; // Array of Choices
         wxRadioBox* m_pRadio_choices; // Radio of Choices
 
+        // Date selection
+        wxTextCtrl* m_pDate;
+        wxTextCtrl* m_pSalaryPerHour;
+
         // Panel and Sizer holding all the Employee data, hours and wages
         wxPanel* m_pSalary_panel;
         wxBoxSizer* m_pContent_sizer;
@@ -36,10 +40,6 @@ namespace gui {
         wxScrolledWindow* m_pScrolled_window;
         wxBoxSizer* m_pHours_sizer;
         wxBoxSizer* m_pTotal_wages_sizer;
-
-        // Date selection
-        wxTextCtrl* m_pDate;
-        wxTextCtrl* m_pSalaryPerHour;
 
         // Buttons
         wxButton* m_pButton_back;

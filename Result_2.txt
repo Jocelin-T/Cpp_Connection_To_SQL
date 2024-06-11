@@ -1,0 +1,43 @@
+Result_2
+
++ Start processing Employee ID: 2
++ Start processing Employee ID: 4
++ Start processing Employee ID: 9
++ Start processing Employee ID: 12
++ Finished processing Employee ID: 2
++ Start processing Employee ID: 3
++ Start calculating wages for Employee ID: 2
++ Finished calculating wages for Employee ID: 2, Total Wages: 342
++ Map Update - Employee ID: 2, Total Wages: 342
++ Finished processing Employee ID: 4
++ Start processing Employee ID: 5
++ Start calculating wages for Employee ID: 4
++ Finished calculating wages for Employee ID: 4, Total Wages: 0
++ Map Update - Employee ID: 4, Total Wages: 0
++ Finished processing Employee ID: 12
+Start processing Employee ID: 13
++ Start calculating wages for Employee ID: 12
++ Finished calculating wages for Employee ID: 12, Total Wages: 380
++ Map Update - Employee ID: 12, Total Wages: 380
++ Finished processing Employee ID: 9
+Start processing Employee ID: 10
++ Start calculating wages for Employee ID: 9
++ Finished calculating wages for Employee ID: 9, Total Wages: 0
++ Map Update - Employee ID: 9, Total Wages: 0
++ Finished processing Employee ID: 3
++ Start calculating wages for Employee ID: 3
++ Finished calculating wages for Employee ID: 3, Total Wages: 608
++ Map Update - Employee ID: 3, Total Wages: 608
++ Finished processing Employee ID: 5 -------- CALCULATION NEVER START HERE ----------
+Finished processing Employee ID: 13
+Start processing Employee ID: 14
+Start processing Employee ID: 6
+Finished processing Employee ID: 10
+Start processing Employee ID: 11
+Finished processing Employee ID: 14
+Start processing Employee ID: 15
+Finished processing Employee ID: 6
+Finished processing Employee ID: 11
+Finished processing Employee ID: 15
+Start processing Employee ID: 16
+Finished processing Employee ID: 16

@@ -32,14 +32,14 @@ namespace gui{
 		pMain_sizer->AddStretchSpacer(1); // This adds a stretchable space that expands
 
 		// Add footer button
-		vector_buttons_footer = { m_pButton_exit, m_pButton_connect };
-		vector_labels_footer = { "Exit", "Connect" };
-		vector_method_footer = { 
+		m_vector_buttons_footer = { m_pButton_exit, m_pButton_connect };
+		m_vector_labels_footer = { "Exit", "Connect" };
+		m_vector_method_footer = { 
 			wxCommandEventHandler(PanelConnection::onExitButtonClicked), 
 			wxCommandEventHandler(PanelConnection::onConnectButtonClicked) 
 		};
 
-		addFooterButtons(pMain_sizer, vector_buttons_footer, vector_labels_footer, vector_method_footer);
+		addFooterButtons(pMain_sizer, m_vector_buttons_footer, m_vector_labels_footer, m_vector_method_footer);
 
 		// Set the main sizer for the panel to arrange the sub-widgets
 		this->SetSizer(pMain_sizer);

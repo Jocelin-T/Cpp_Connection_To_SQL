@@ -12,6 +12,9 @@
 #include <cctype>
 #include <chrono>
 #include <ctime>
+#include <map>
+#include <queue>
+
 
 #include "SqlQuery.h"
 #include "Salary.h"
@@ -71,8 +74,9 @@ namespace bll {
 	*/
 	std::vector<Employee> getVectorWithEmployees();
 
-	/** ***************************************** Get Salaries *****************************************
-	 * @brief : Crate a vector with all Salary, depending the period choosed.
+	/** ***************************************** Get Salaries of one Employee *****************************************
+	 * @brief : Create a vector with all Salaries of 1 employee, depending the period choosed.
+	 *  NEED to destroy the vector after use.
 	 *
 	 * @param employee_id : int => ID of the employee
 	 * @param entry_date : std::string& => first date for weeks and month
@@ -80,7 +84,21 @@ namespace bll {
 	 * @param salary_per_hour : int => salary per hour
 	 * @return  : std::vector<Salary>
 	 */
-	std::vector<Salary> getSalaries(const int employee_id, const std::string& entry_date, const int period, const int salary_per_hour);
+	std::vector<Salary> getSalariesOfOneEmployee(const int employee_id, const std::string& entry_date, const int period, const int salary_per_hour);
+
+	/** ***************************************** Get yearly wages of all Employees *****************************************
+	 * @brief : Create a map with all the employee_id and yearly wages.
+	 *
+	 * @param year : std::string& => the choosen year
+	 * @return  : std::map<int, int> => employee_id, yearly wages
+	 */
+	std::map<int, int> getYearlyWagesOfAllEmployees(const std::string& year);
+
+
+	void getYearlySalariesOfOneEmployee(const std::string& year, const std::vector<Employee>& vector_employees, size_t start, size_t end);
+
+
+	void calculateYearlyWages(std::map<int, int>& map);
 
 	/** ***************************************** Manual Destroyer *****************************************
 	 * @brief : NEED to be call when done with getSalary() for avoiding memory leak.

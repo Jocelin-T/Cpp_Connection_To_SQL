@@ -96,6 +96,12 @@
     <ClCompile Include="PanelEmployee_Hours.cpp">
       <Filter>Fichiers sources\GUI\Employee</Filter>
     </ClCompile>
+    <ClCompile Include="PanelAdmin_AllSalaries.cpp">
+      <Filter>Fichiers sources\GUI\Admin</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiThreading.cpp">
+      <Filter>Fichiers sources\BLL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -145,6 +151,12 @@
     </ClInclude>
     <ClInclude Include="PanelEmployee_Hours.h">
       <Filter>Fichiers d%27en-tête\GUI\Employee</Filter>
+    </ClInclude>
+    <ClInclude Include="PanelAdmin_AllSalaries.h">
+      <Filter>Fichiers d%27en-tête\GUI\Admin</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiThreading.h">
+      <Filter>Fichiers d%27en-tête\BLL</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

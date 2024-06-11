@@ -1,0 +1,60 @@
+Result_1
+
++++ Start processing Employee ID: 9
+*** Start processing Employee ID: 1 ****** SHOULD NOT BE HERE ********
++++ Start processing Employee ID: 4
++++ Start processing Employee ID: 12
++++ Finished processing Employee ID: 9
++++ Start processing Employee ID: 10
++++ Start calculating wages for Employee ID: 9
++++ Finished calculating wages for Employee ID: 9, Total Wages: 0
++++ Map Update - Employee ID: 9, Total Wages: 0
++++ Finished processing Employee ID: 12
++++ Start processing Employee ID: 13
+*** Finished processing Employee ID: 1 ****** SHOULD NOT BE HERE ********
++++ Start calculating wages for Employee ID: 12
++++ Finished calculating wages for Employee ID: 12, Total Wages: 380
++++ Start processing Employee ID: 2
++++ Finished processing Employee ID: 4
++++ Map Update - Employee ID: 12, Total Wages: 380
+Start processing Employee ID: 5
++++ Start calculating wages for Employee ID: 4
+--- Finished calculating wages for Employee ID: 4, Total Wages: 380 ------ TOO MUCH 380 --------
++++ Map Update - Employee ID: 4, Total Wages: 380
+*** Start calculating wages for Employee ID: 1 ****** SHOULD NOT BE HERE ********
+--- Finished calculating wages for Employee ID: 1, Total Wages: 380 ------ TOO MUCH 380 and SHOULD NOT BE HERE --------
++++ Map Update - Employee ID: 1, Total Wages: 380
++++ Finished processing Employee ID: 10
+Start processing Employee ID: 11
++++ Start calculating wages for Employee ID: 10
+--- Finished calculating wages for Employee ID: 10, Total Wages: 2888 ------ TOO MUCH 380 --------
++++ Map Update - Employee ID: 10, Total Wages: 2888
++++ Finished processing Employee ID: 13
++++ Finished processing Employee ID: 2
+Start processing Employee ID: 3
+Start processing Employee ID: 14
++++ Start calculating wages for Employee ID: 13
+--- Finished calculating wages for Employee ID: 13, Total Wages: 2888 ------ TOO MUCH 2888 --------
++++ Map Update - Employee ID: 13, Total Wages: 2888
++++ Start calculating wages for Employee ID: 2
+--- Finished calculating wages for Employee ID: 2, Total Wages: 3230 ------ TOO MUCH 3230 --------
++++ Map Update - Employee ID: 2, Total Wages: 3230
+Finished processing Employee ID: 5
+Start calculating wages for Employee ID: 5
+Finished calculating wages for Employee ID: 5, Total Wages: 3230
+Start processing Employee ID: 6
+Map Update - Employee ID: 5, Total Wages: 3230
+Finished processing Employee ID: 11
+Start calculating wages for Employee ID: 11
+Finished calculating wages for Employee ID: 11, Total Wages: 5054
+Map Update - Employee ID: 11, Total Wages: 5054
+Finished processing Employee ID: 14
+Start processing Employee ID: 15
+Start calculating wages for Employee ID: 14
+Finished calculating wages for Employee ID: 14, Total Wages: 5054
+Map Update - Employee ID: 14, Total Wages: 5054
+Finished processing Employee ID: 3
+Finished processing Employee ID: 6
+Finished processing Employee ID: 15
+Start processing Employee ID: 16
+Finished processing Employee ID: 16
